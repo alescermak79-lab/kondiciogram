@@ -121,30 +121,128 @@
   footer{font-size:13px;color:#7a6c82;text-align:center;font-family:var(--mono);letter-spacing:.04em;line-height:1.7}
   .testbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin-inline:-20px;background:#7a2f3a;color:#ece2cc;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px}
   .testnote{border:1px dashed var(--rose);color:var(--rose);padding:10px 14px;font-size:14px}
-  @media (prefers-reduced-motion:reduce){.q{animation:none}}
+
+  /* ===== Tajemná vrstva ===== */
+  body{background:#0e0a14}
+  .nebula{position:fixed;inset:-20%;pointer-events:none;z-index:0;filter:blur(40px);opacity:.75}
+  .nebula.n1{background:radial-gradient(40% 35% at 30% 25%, rgba(122,47,58,.45), transparent 70%),radial-gradient(35% 30% at 75% 60%, rgba(58,36,90,.55), transparent 70%);animation:drift1 60s ease-in-out infinite alternate}
+  .nebula.n2{background:radial-gradient(30% 25% at 60% 20%, rgba(201,164,106,.12), transparent 70%),radial-gradient(45% 35% at 20% 80%, rgba(40,70,80,.35), transparent 70%);animation:drift2 80s ease-in-out infinite alternate}
+  @keyframes drift1{to{transform:translate(4%,3%) rotate(6deg) scale(1.08)}}
+  @keyframes drift2{to{transform:translate(-5%,-2%) rotate(-5deg) scale(1.1)}}
+  .vignette{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 75% 70% at 50% 40%, transparent 40%, rgba(5,3,8,.85) 100%)}
+  .gold{background:linear-gradient(100deg,#8a7048 0%,#f0dcb0 35%,#c9a46a 55%,#f5e6c4 70%,#8a7048 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 9s linear infinite}
+  @keyframes shimmer{to{background-position:-220% 0}}
+
+  .astro{position:relative;width:min(300px,78vw);aspect-ratio:1;margin-bottom:-8px}
+  .astro svg{position:absolute;inset:0;width:100%;height:100%}
+  .astro .r1{animation:spin 120s linear infinite}
+  .astro .r2{animation:spin 90s linear infinite reverse}
+  .astro .r3{animation:spin 66s linear infinite}
+  .astro .core{animation:breathe 6s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes breathe{50%{opacity:.55;transform:scale(.96)}}
+  .astro svg g{transform-origin:150px 150px;transform-box:view-box}
+  .astro::after{content:"";position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle, rgba(201,164,106,.28), transparent 70%);filter:blur(12px);animation:breathe 6s ease-in-out infinite}
+
+  .whisper{max-width:30ch;margin-inline:auto;font-family:var(--fell);font-style:italic;font-size:21px;line-height:1.5;color:var(--ink);text-align:center;position:relative;padding-block:6px}
+  .whisper::before,.whisper::after{content:"";display:block;width:60px;height:1px;margin:14px auto;background:linear-gradient(90deg,transparent,var(--brass),transparent)}
+  .whisper small{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+
+  .story{display:flex;flex-direction:column;gap:28px}
+  .story h2,.gifts h2{font-family:var(--display);font-size:clamp(30px,6vw,42px);line-height:1.1;text-align:center}
+  .story .intro{text-align:center;color:var(--ink-dim);max-width:44ch;margin:0 auto}
+  .chapters{display:flex;flex-direction:column;gap:0;border-left:1px solid var(--brass-dim);margin-left:10px}
+  .chapter{position:relative;padding:0 0 26px 28px;display:flex;flex-direction:column;gap:6px}
+  .chapter::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--night);border:1px solid var(--brass);box-shadow:0 0 12px rgba(201,164,106,.6)}
+  .chapter .yr{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--brass)}
+  .chapter h3{font-family:var(--fell);font-size:24px;line-height:1.25}
+  .chapter p{color:var(--ink-dim);font-size:17px}
+  .chapter b{color:var(--ink);font-weight:400}
+  .honest{font-size:15px;color:var(--ink-dim);font-style:italic;text-align:center;max-width:48ch;margin:0 auto}
+
+  .gifts{display:flex;flex-direction:column;gap:24px}
+  .giftlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .gift{background:rgba(14,10,20,.92);padding:22px 20px;display:flex;flex-direction:column;gap:8px}
+  .gift .g{font-family:var(--display);font-size:30px;line-height:1;color:var(--brass)}
+  .gift h3{font-family:var(--fell);font-size:21px}
+  .gift p{font-size:16px;color:var(--ink-dim)}
+  .cta2{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+  .advice{border:1px solid var(--brass-dim);padding:22px 24px;background:rgba(122,47,58,.12);display:flex;flex-direction:column;gap:8px}
+  .advice .eyebrow{color:var(--rose)}
+  .advice p{font-family:var(--fell);font-size:21px;line-height:1.45}
+  .advice p.eyebrow{font-family:var(--mono);font-size:12px;line-height:1.4}
+  @media (prefers-reduced-motion:reduce){.q,.nebula,.astro *,.astro::after,.gold{animation:none!important}}
 </style>
 </head>
 <body>
 <div class="testbar" role="note">Testovací verze · neplaťte, platby zatím nikam nedorazí</div>
+<div class="nebula n1" aria-hidden="true"></div><div class="nebula n2" aria-hidden="true"></div>
 <canvas id="sky" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
 <main>
 
   <!-- ÚVOD -->
-  <section id="intro" class="hero" style="display:flex;flex-direction:column;gap:40px">
+  <section id="intro" style="display:flex;flex-direction:column;gap:72px">
     <div class="hero">
-      <svg class="sigil" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="46" fill="none" stroke="#c9a46a" stroke-width=".8"/>
-        <circle cx="50" cy="50" r="38" fill="none" stroke="#c9a46a" stroke-width=".4" stroke-dasharray="1 3"/>
-        <path d="M8 50 C 22 22, 36 22, 50 50 S 78 78, 92 50" fill="none" stroke="#d0848c" stroke-width="1.2"/>
-        <path d="M8 50 C 26 30, 40 70, 58 50 S 82 34, 92 50" fill="none" stroke="#79ada2" stroke-width="1.2"/>
-        <path d="M8 50 C 30 78, 50 22, 70 50 S 86 60, 92 50" fill="none" stroke="#c9a46a" stroke-width="1.2"/>
-        <circle cx="50" cy="50" r="2.4" fill="#ece2cc"/>
-      </svg>
-      <p class="eyebrow">Tři rytmy · třicet dní · jeden dopis</p>
-      <h1>Kondiciogram<em>co tvé tělo ví dřív než ty</em></h1>
-      <p class="lede">Od chvíle narození v tobě tikají tři hodiny. Tělo se točí ve 23 dnech, srdce ve 28, mysl ve 33. <i>Odpověz na sedm otázek</i> a každý měsíc ti přijde dopis o tom, kam tě nesou.</p>
+      <div class="astro" aria-hidden="true">
+        <svg viewBox="0 0 300 300">
+          <g class="r1" id="ringBody"></g>
+          <g class="r2" id="ringHeart"></g>
+          <g class="r3" id="ringMind"></g>
+          <g class="core">
+            <path d="M60 150 C 90 95, 120 95, 150 150 S 210 205, 240 150" fill="none" stroke="#d0848c" stroke-width="1.3"/>
+            <path d="M60 150 C 95 110, 125 190, 160 150 S 220 115, 240 150" fill="none" stroke="#79ada2" stroke-width="1.3"/>
+            <path d="M60 150 C 100 205, 140 95, 185 150 S 225 170, 240 150" fill="none" stroke="#c9a46a" stroke-width="1.3"/>
+            <circle cx="150" cy="150" r="3.2" fill="#f5e6c4"/>
+          </g>
+        </svg>
+      </div>
+      <p class="eyebrow">Staré vídeňské učení · tři rytmy · jeden dopis</p>
+      <h1><span class="gold">Kondiciogram</span><em>co tvé tělo ví dřív než ty</em></h1>
+      <p class="lede">Od první chvíle, kdy ses nadechl/a, v tobě tiše tikají tři hodiny. Určují dny síly i dny, kdy je lepší mlčet. <i>Odpověz na sedm otázek</i> a každý měsíc ti přijde dopis s radami, kdy jednat, kdy odpočívat a kdy konečně udělat to, co odkládáš.</p>
       <button class="btn" id="start">Otevřít bránu</button>
     </div>
+
+    <p class="whisper" id="whisper"><small>Šepot pro dnešek</small><span id="whisperTxt">Co odkládáš nejdéle, to tě stojí nejvíc sil.</span></p>
+
+    <div class="story">
+      <h2>Odkud se ta magie bere</h2>
+      <p class="intro">Na přelomu století si tři muži ve třech městech všimli téhož: lidé mají dobré a špatné dny v podivně pravidelném rytmu.</p>
+      <div class="chapters">
+        <div class="chapter">
+          <span class="yr">BERLÍN · 90. LÉTA 19. STOLETÍ</span>
+          <h3>Lékař, který počítal dny</h3>
+          <p>Berlínský lékař <b>Wilhelm Fliess</b> léta zapisoval horečky, nálady a slabosti svých pacientů. Z poznámek mu vystoupila dvě čísla: <b>23 dní</b> pro tělo a <b>28 dní</b> pro city.</p>
+        </div>
+        <div class="chapter">
+          <span class="yr">VÍDEŇ · KOLEM ROKU 1900</span>
+          <h3>Psycholog, který došel ke stejným číslům</h3>
+          <p>Vídeňský psycholog <b>Hermann Swoboda</b> sledoval sny a nápady a nezávisle na Fliessovi objevil stejné periody. Dva lidé ve dvou městech, jeden rytmus.</p>
+        </div>
+        <div class="chapter">
+          <span class="yr">INNSBRUCK · 20. LÉTA 20. STOLETÍ</span>
+          <h3>Učitel a třetí hodiny</h3>
+          <p>Inženýr a učitel <b>Alfred Teltscher</b> si všiml, že studentům jde učení v cyklech po <b>33 dnech</b>. Tak vznikla třetí křivka: mysl.</p>
+        </div>
+        <div class="chapter" style="padding-bottom:0">
+          <span class="yr">DNES</span>
+          <h3>Tvůj vlastní kondiciogram</h3>
+          <p>Ze dne tvého narození spočítáme, kde se všechny tři křivky právě nacházejí, a přeložíme je do řeči, které rozumí život: <b>kdy jednat, kdy počkat, kdy odpustit.</b></p>
+        </div>
+      </div>
+      <p class="honest">Věda biorytmy nepotvrdila. Nečti je jako proroctví, ale jako zrcadlo. Kdo se jednou za měsíc zastaví a zeptá se sám sebe, jak mu je, už udělal první krok.</p>
+    </div>
+
+    <div class="gifts">
+      <h2>Co ti dopis přinese</h2>
+      <div class="giftlist">
+        <div class="gift"><span class="g">I</span><h3>Dny síly</h3><p>Kdy máš nejvíc energie na důležitý rozhovor, podpis smlouvy nebo nový začátek.</p></div>
+        <div class="gift"><span class="g">II</span><h3>Dny ticha</h3><p>Kritické dny, kdy se křivky lámou. Tehdy zpomal, nehádej se a nic zásadního nerozhoduj.</p></div>
+        <div class="gift"><span class="g">III</span><h3>Rada do života</h3><p>Jedna věta, kterou si ponese celý měsíc. Šitá na míru tomu, co tě právě trápí.</p></div>
+        <div class="gift"><span class="g">IV</span><h3>Tvůj symbol</h3><p>Výklad předmětu, po kterém jsi sáhl/a, a živlu, který tě volá.</p></div>
+      </div>
+    </div>
+
     <div class="chartbox">
       <p class="eyebrow">Ukázka · rytmy člověka narozeného 14. 3. 1988</p>
       <div class="chartwrap" id="sampleChart"></div>
@@ -153,6 +251,11 @@
         <span><b style="background:#79ada2"></b>Srdce · 28 dní</span>
         <span><b style="background:#c9a46a"></b>Mysl · 33 dní</span>
       </div>
+    </div>
+
+    <div class="cta2">
+      <p class="whisper" style="max-width:34ch">Tvé hodiny tikají, i když je neposloucháš.</p>
+      <button class="btn" id="start2">Zjistit, co ukazují</button>
     </div>
   </section>
 
@@ -185,6 +288,7 @@
       </div>
     </div>
     <div class="text" id="rOpen"></div>
+    <div class="advice"><p class="eyebrow">Rada do života na tento měsíc</p><p id="rAdvice"></p></div>
     <div class="sealed">
       <div class="blur" id="rSealed" aria-hidden="true"></div>
       <div class="seal">
@@ -355,9 +459,9 @@ function next(){
 }
 $("next").addEventListener("click", next);
 $("back").addEventListener("click", ()=>{ if(step>0){ step--; renderQ(); } });
-$("start").addEventListener("click", ()=>{
-  $("intro").hidden = true; $("quiz").hidden = false; renderQ(); window.scrollTo({top:0});
-});
+function begin(){ $("intro").hidden = true; $("quiz").hidden = false; renderQ(); window.scrollTo({top:0}); }
+$("start").addEventListener("click", begin);
+$("start2").addEventListener("click", begin);
 
 /* ===== Generátor výkladu (stejná logika poslouží i pro e-mail) ===== */
 const TXT = {
@@ -456,6 +560,7 @@ function showResult(){
   $("rChart").innerHTML = chart(r.birth, r.today);
   $("rOpen").innerHTML = r.open.map(t=>`<p>${t}</p>`).join("");
   $("rSealed").innerHTML = r.sealed.map(t=>`<p>${t}</p>`).join("");
+  $("rAdvice").textContent = adviceFor(answers, r.now);
 
   // QR platba – trvalý příkaz (FRQ/DT)
   const dt = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
@@ -483,6 +588,64 @@ $("paid").addEventListener("click", async ()=>{
   $("doneMail").textContent = answers.email;
 });
 
+/* ===== Rady do života ===== */
+const WHISPERS = [
+  "Co odkládáš nejdéle, to tě stojí nejvíc sil.",
+  "Ne každý den je na rozhodnutí. Některé jsou jen na čaj.",
+  "Kdo zpomalí včas, nemusí pak brzdit.",
+  "Odpověď často přijde, když se přestaneš ptát.",
+  "Dnes stačí udělat jednu věc pořádně.",
+  "Laskavé slovo zadarmo je nejlepší investice týdne.",
+  "Únava není slabost. Je to vzkaz.",
+  "Než něco pošleš ve vzteku, nech to přes noc uležet."
+];
+const ADVICE = {
+  love:{up:"Srdce je silné: řekni nahlas, co jinak jen myslíš. Blízcí to potřebují slyšet víc, než tušíš.",
+        down:"Srdce odpočívá: nečekej od druhých, že uhodnou, co potřebuješ. Řekni to klidně a jednoduše.",
+        crit:"Srdce je na hraně: dnes se nehádej. Co bolí dnes, bude za tři dny poloviční."},
+  work:{up:"Mysl je ostrá: pusť se do úkolu, kterého se nejvíc bojíš. Právě teď ho zvládneš nejlépe.",
+        down:"Mysl odpočívá: dodělávej, uklízej a plánuj. Na velké začátky přijde lepší čas.",
+        crit:"Mysl se láme: důležitý podpis nebo rozhodnutí o penězích odlož aspoň o dva dny."},
+  body:{up:"Tělo má sílu: začni s pohybem, který jsi slíbil/a sám/sama sobě. Dnes to půjde snáz.",
+        down:"Tělo si říká o klid: dřívější spánek teď udělá víc než káva a vůle.",
+        crit:"Tělo je citlivé: nepřeceňuj se. Procházka místo výkonu."},
+  choice:{up:"Rytmy ti přejí: rozhodnutí, které odkládáš, udělej do konce týdne. Horší už to nebude.",
+          down:"Ještě počkej: sepiš si pro a proti a nech je ležet do dne síly.",
+          crit:"Dnes nerozhoduj. Jen si zapiš, co cítíš. Zítra to bude jasnější."},
+  self:{up:"Tvé hodiny jdou s tebou: udělej si radost, kterou si pořád odpíráš.",
+        down:"Buď k sobě laskavější než k ostatním. Aspoň tento měsíc.",
+        crit:"Zastav se. Den bez výkonu není ztracený den."}
+};
+function adviceFor(a, now){
+  const k = {love:"heart",work:"mind",body:"body",choice:"mind",self:"heart"}[a.focus];
+  const p = now.find(x=>x.key===k);
+  const mood = p.ph==="kritický den" ? "crit" : (p.ph==="vrchol"||p.ph==="stoupá") ? "up" : "down";
+  return ADVICE[a.focus][mood];
+}
+try{ $("whisperTxt").textContent = WHISPERS[Math.floor(Math.random()*WHISPERS.length)]; }catch(e){}
+
+/* ===== Astroláb: rysky podle délky cyklů ===== */
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  [["ringBody",140,23,"#d0848c"],["ringHeart",118,28,"#79ada2"],["ringMind",96,33,"#c9a46a"]].forEach(([id,r,n,col])=>{
+    const g=document.getElementById(id); if(!g) return;
+    const c=document.createElementNS(NS,"circle");
+    c.setAttribute("cx",150);c.setAttribute("cy",150);c.setAttribute("r",r);c.setAttribute("fill","none");
+    c.setAttribute("stroke",col);c.setAttribute("stroke-opacity",".45");c.setAttribute("stroke-width",".7");g.appendChild(c);
+    for(let i=0;i<n;i++){
+      const ang=i/n*2*Math.PI, big=i===0;
+      const l=document.createElementNS(NS,"line");
+      const r1=r-(big?9:4), r2=r+(big?9:4);
+      l.setAttribute("x1",150+r1*Math.cos(ang));l.setAttribute("y1",150+r1*Math.sin(ang));
+      l.setAttribute("x2",150+r2*Math.cos(ang));l.setAttribute("y2",150+r2*Math.sin(ang));
+      l.setAttribute("stroke",col);l.setAttribute("stroke-width",big?"1.6":".8");l.setAttribute("stroke-opacity",big?"1":".7");
+      g.appendChild(l);
+    }
+    const dot=document.createElementNS(NS,"circle");
+    dot.setAttribute("cx",150+r);dot.setAttribute("cy",150);dot.setAttribute("r","3");dot.setAttribute("fill",col);g.appendChild(dot);
+  });
+})();
+
 /* ===== Ukázka na úvodu ===== */
 $("sampleChart").innerHTML = chart(new Date(1988,2,14), midnight(new Date()));
 
@@ -491,12 +654,22 @@ $("sampleChart").innerHTML = chart(new Date(1988,2,14), midnight(new Date()));
   const c=$("sky"), g=c.getContext("2d"); let stars=[], W, H;
   const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function size(){ W=c.width=innerWidth*devicePixelRatio; H=c.height=innerHeight*devicePixelRatio;
-    stars=Array.from({length:Math.round(innerWidth*innerHeight/5200)},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.1+.2)*devicePixelRatio,p:Math.random()*6.28,s:.004+Math.random()*.012})); }
+    stars=Array.from({length:Math.round(innerWidth*innerHeight/4200)},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.1+.2)*devicePixelRatio,p:Math.random()*6.28,s:.004+Math.random()*.012})); }
+  let shoot=null, links=[];
+  function mkLinks(){ links=[]; for(let i=0;i<stars.length;i++){ for(let j=i+1;j<stars.length;j++){ const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y; if(dx*dx+dy*dy < (90*devicePixelRatio)**2 && Math.random()<.35) links.push([i,j]); } } links=links.slice(0,40); }
   function draw(){ g.clearRect(0,0,W,H);
+    g.lineWidth=.6*devicePixelRatio;
+    for(const [i,j] of links){ const a=.05+.07*(0.5+0.5*Math.sin(stars[i].p*.5)); g.strokeStyle=`rgba(201,164,106,${a})`; g.beginPath(); g.moveTo(stars[i].x,stars[i].y); g.lineTo(stars[j].x,stars[j].y); g.stroke(); }
     for(const s of stars){ s.p+=s.s; const a=.25+.55*(0.5+0.5*Math.sin(s.p));
       g.fillStyle=`rgba(236,226,204,${a})`; g.beginPath(); g.arc(s.x,s.y,s.r,0,6.283); g.fill(); }
-    if(!still) requestAnimationFrame(draw); }
-  addEventListener("resize",()=>{size(); if(still) draw();}); size(); draw();
+    if(!still){
+      if(!shoot && Math.random()<.004) shoot={x:Math.random()*W*.7, y:Math.random()*H*.35, t:0};
+      if(shoot){ shoot.t+=1; const len=120*devicePixelRatio, px=shoot.x+shoot.t*9*devicePixelRatio, py=shoot.y+shoot.t*4*devicePixelRatio;
+        const gr=g.createLinearGradient(px,py,px-len,py-len*.45); gr.addColorStop(0,"rgba(245,230,196,.9)"); gr.addColorStop(1,"rgba(245,230,196,0)");
+        g.strokeStyle=gr; g.lineWidth=1.4*devicePixelRatio; g.beginPath(); g.moveTo(px,py); g.lineTo(px-len,py-len*.45); g.stroke();
+        if(shoot.t>45) shoot=null; }
+      requestAnimationFrame(draw); } }
+  addEventListener("resize",()=>{size(); mkLinks(); if(still) draw();}); size(); mkLinks(); draw();
 })();
 </script>
 
