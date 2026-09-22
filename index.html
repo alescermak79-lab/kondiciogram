@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Osobní kondiciogram – tvé biorytmy a tajemný výklad na příštích 30 dní, každý měsíc do e-mailu.">
+<title>Osobní kondiciogram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<style>
+  [hidden]{display:none!important}
+  body{margin:0}
+  img{max-width:100%}
+  /* Jeden záměrný noční svět – stejný v obou režimech */
+  :root{
+    color-scheme: dark;
+    --night:#150f1c;
+    --night-2:#1e1628;
+    --veil:#2a2035;
+    --ink:#ece2cc;
+    --ink-dim:#a99bb0;
+    --brass:#c9a46a;
+    --brass-dim:#8a7048;
+    --rose:#d0848c;
+    --verdigris:#79ada2;
+    --line:rgba(236,226,204,.14);
+    --display:"IM Fell English SC","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    --fell:"IM Fell English","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    --body:"Spectral","Iowan Old Style",Georgia,serif;
+    --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  }
+  html,body{background:var(--night);color:var(--ink)}
+  body{font-family:var(--body);font-weight:300;font-size:18px;line-height:1.65;padding-inline:20px;min-height:100%;
+    background:radial-gradient(ellipse 90% 60% at 50% -10%, #3a2442 0%, rgba(58,36,66,0) 60%), var(--night);}
+  #sky{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+  main{position:relative;z-index:1;max-width:680px;margin:0 auto;padding-block:56px 80px;display:flex;flex-direction:column;gap:56px}
+  h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
+  p{margin:0}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+  .muted{color:var(--ink-dim)}
+  .small{font-size:15px}
+
+  /* Hero */
+  .hero{display:flex;flex-direction:column;gap:22px;text-align:center;align-items:center}
+  .sigil{width:92px;height:92px}
+  .hero h1{font-family:var(--display);font-size:clamp(44px,9vw,76px);line-height:1;letter-spacing:.02em}
+  .hero h1 em{font-family:var(--fell);font-style:italic;color:var(--brass);display:block;font-size:.42em;letter-spacing:.04em;margin-top:10px;text-transform:none}
+  .hero .lede{font-size:20px;max-width:34ch;color:var(--ink)}
+  .hero .lede i{font-family:var(--fell);color:var(--brass)}
+
+  /* Tlačítka */
+  .btn{appearance:none;border:1px solid var(--brass);background:transparent;color:var(--ink);font-family:var(--display);font-size:20px;letter-spacing:.08em;padding:14px 30px;cursor:pointer;transition:background .3s,color .3s}
+  .btn:hover{background:var(--brass);color:var(--night)}
+  .btn:focus-visible,.opt:focus-visible,input:focus-visible,.link:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+  .btn[disabled]{opacity:.35;cursor:not-allowed}
+  .btn[disabled]:hover{background:transparent;color:var(--ink)}
+  .link{appearance:none;background:none;border:0;color:var(--ink-dim);font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:8px 0}
+  .link:hover{color:var(--ink)}
+
+  /* Graf */
+  .chartbox{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:22px;display:flex;flex-direction:column;gap:14px}
+  .chartwrap{overflow-x:auto}
+  .chartwrap svg{display:block;width:100%;min-width:480px;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:13px;color:var(--ink-dim)}
+  .legend span{display:inline-flex;align-items:center;gap:8px}
+  .legend b{display:inline-block;width:18px;height:2px}
+
+  /* Otázky */
+  .quiz{display:flex;flex-direction:column;gap:28px}
+  .progress{display:flex;gap:6px}
+  .progress i{flex:1;height:2px;background:var(--line)}
+  .progress i.on{background:var(--brass)}
+  .q h2{font-family:var(--fell);font-size:clamp(28px,5.4vw,38px);line-height:1.2}
+  .q .hint{margin-top:10px;color:var(--ink-dim);font-size:16px}
+  .q{display:flex;flex-direction:column;gap:22px;animation:rise .6s ease both}
+  @keyframes rise{from{opacity:.001;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .field{width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid var(--brass-dim);color:var(--ink);font-family:var(--fell);font-size:28px;padding:8px 2px;color-scheme:dark}
+  .field::placeholder{color:#6e6078}
+  .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+  .opt{appearance:none;text-align:left;background:rgba(30,22,40,.6);border:1px solid var(--line);color:var(--ink);padding:16px 18px;cursor:pointer;font-family:var(--body);font-size:17px;display:flex;flex-direction:column;gap:4px;transition:border-color .25s,background .25s}
+  .opt small{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-dim)}
+  .opt:hover{border-color:var(--brass-dim)}
+  .opt[aria-pressed="true"]{border-color:var(--brass);background:rgba(201,164,106,.12)}
+  .consent{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-dim)}
+  .consent input{margin-top:5px;accent-color:var(--brass);width:18px;height:18px;flex:none}
+  .nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .err{color:var(--rose);font-size:15px;min-height:1.4em}
+
+  /* Výklad */
+  .reading{display:flex;flex-direction:column;gap:30px}
+  .reading h2{font-family:var(--display);font-size:clamp(34px,7vw,52px);line-height:1.05}
+  .today{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .today div{background:var(--night);padding:16px 14px;display:flex;flex-direction:column;gap:4px}
+  .today .v{font-family:var(--mono);font-size:26px;font-variant-numeric:tabular-nums}
+  .today .l{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim)}
+  .today .s{font-size:14px;color:var(--ink-dim);font-style:italic}
+  .text{display:flex;flex-direction:column;gap:18px}
+  .text p:first-child::first-letter{font-family:var(--display);float:left;font-size:3.4em;line-height:.85;padding:6px 10px 0 0;color:var(--brass)}
+  .sealed{position:relative;display:flex;flex-direction:column;gap:18px}
+  .sealed .blur{filter:blur(6px);user-select:none;opacity:.55}
+  .seal{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+  .seal svg{width:74px;height:74px}
+  .seal p{font-family:var(--fell);font-style:italic;font-size:20px;max-width:26ch}
+
+  /* Platba */
+  .pay{border:1px solid var(--brass-dim);padding:28px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;background:rgba(21,15,28,.8)}
+  .pay h3{font-family:var(--display);font-size:28px}
+  .price{font-family:var(--fell);font-size:22px;color:var(--brass)}
+  .qr{background:#f3ecdc;color:#150f1c;font-size:14px;padding:10px;width:200px;max-width:100%;box-sizing:border-box}
+  .qr svg{display:block;width:100%;height:auto}
+  dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0;font-size:15px}
+  dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);padding-top:4px}
+  dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums;word-break:break-all}
+  .paycol{display:flex;flex-direction:column;gap:16px}
+  @media (max-width:600px){.pay{grid-template-columns:1fr;padding:20px}.qr{width:220px;margin:0 auto}}
+
+  .done{text-align:center;display:flex;flex-direction:column;gap:18px;align-items:center}
+  .done h2{font-family:var(--display);font-size:clamp(34px,7vw,48px)}
+  footer{font-size:13px;color:#7a6c82;text-align:center;font-family:var(--mono);letter-spacing:.04em;line-height:1.7}
+  .testbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin-inline:-20px;background:#7a2f3a;color:#ece2cc;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px}
+  .testnote{border:1px dashed var(--rose);color:var(--rose);padding:10px 14px;font-size:14px}
+  @media (prefers-reduced-motion:reduce){.q{animation:none}}
+</style>
+</head>
+<body>
+<div class="testbar" role="note">Testovací verze · neplaťte, platby zatím nikam nedorazí</div>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main>
+
+  <!-- ÚVOD -->
+  <section id="intro" class="hero" style="display:flex;flex-direction:column;gap:40px">
+    <div class="hero">
+      <svg class="sigil" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#c9a46a" stroke-width=".8"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#c9a46a" stroke-width=".4" stroke-dasharray="1 3"/>
+        <path d="M8 50 C 22 22, 36 22, 50 50 S 78 78, 92 50" fill="none" stroke="#d0848c" stroke-width="1.2"/>
+        <path d="M8 50 C 26 30, 40 70, 58 50 S 82 34, 92 50" fill="none" stroke="#79ada2" stroke-width="1.2"/>
+        <path d="M8 50 C 30 78, 50 22, 70 50 S 86 60, 92 50" fill="none" stroke="#c9a46a" stroke-width="1.2"/>
+        <circle cx="50" cy="50" r="2.4" fill="#ece2cc"/>
+      </svg>
+      <p class="eyebrow">Tři rytmy · třicet dní · jeden dopis</p>
+      <h1>Kondiciogram<em>co tvé tělo ví dřív než ty</em></h1>
+      <p class="lede">Od chvíle narození v tobě tikají tři hodiny. Tělo se točí ve 23 dnech, srdce ve 28, mysl ve 33. <i>Odpověz na sedm otázek</i> a každý měsíc ti přijde dopis o tom, kam tě nesou.</p>
+      <button class="btn" id="start">Otevřít bránu</button>
+    </div>
+    <div class="chartbox">
+      <p class="eyebrow">Ukázka · rytmy člověka narozeného 14. 3. 1988</p>
+      <div class="chartwrap" id="sampleChart"></div>
+      <div class="legend">
+        <span><b style="background:#d0848c"></b>Tělo · 23 dní</span>
+        <span><b style="background:#79ada2"></b>Srdce · 28 dní</span>
+        <span><b style="background:#c9a46a"></b>Mysl · 33 dní</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTÁZKY -->
+  <section id="quiz" class="quiz" hidden>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+    <div id="qslot"></div>
+    <p class="err" id="err" role="alert"></p>
+    <div class="nav">
+      <button class="link" id="back">← Zpět</button>
+      <button class="btn" id="next">Dál</button>
+    </div>
+  </section>
+
+  <!-- VÝKLAD + PLATBA -->
+  <section id="result" class="reading" hidden>
+    <div>
+      <p class="eyebrow" id="rDate"></p>
+      <h2 id="rTitle"></h2>
+    </div>
+    <div class="today" id="rToday"></div>
+    <div class="chartbox">
+      <p class="eyebrow">Tvých příštích třicet dní</p>
+      <div class="chartwrap" id="rChart"></div>
+      <div class="legend">
+        <span><b style="background:#d0848c"></b>Tělo</span>
+        <span><b style="background:#79ada2"></b>Srdce</span>
+        <span><b style="background:#c9a46a"></b>Mysl</span>
+        <span><b style="background:#ece2cc;height:8px;width:2px"></b>Kritický den</span>
+      </div>
+    </div>
+    <div class="text" id="rOpen"></div>
+    <div class="sealed">
+      <div class="blur" id="rSealed" aria-hidden="true"></div>
+      <div class="seal">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34" fill="#7a2f3a"/><circle cx="40" cy="40" r="26" fill="none" stroke="#c9a46a" stroke-width="1"/><path d="M22 40 C 30 26, 36 26, 40 40 S 50 54, 58 40" fill="none" stroke="#ece2cc" stroke-width="1.6"/></svg>
+        <p>Zbytek výkladu je zapečetěn. Otevře se v dopise, který ti přijde e-mailem.</p>
+      </div>
+    </div>
+
+    <div class="pay" id="pay">
+      <div class="qr" id="qr" role="img" aria-label="QR kód pro nastavení trvalého příkazu"></div>
+      <div class="paycol">
+        <div>
+          <h3>Zlom pečeť</h3>
+          <p class="price"><span id="priceTxt"></span> Kč měsíčně · trvalý příkaz</p>
+        </div>
+        <p class="small muted">Naskenuj kód v aplikaci své banky. Pokud banka trvalý příkaz sama nenastaví, zadej ho ručně podle údajů níže. Variabilní symbol je jen tvůj, podle něj tě poznáme.</p>
+        <dl>
+          <dt>Účet</dt><dd id="pAcc"></dd>
+          <dt>Částka</dt><dd id="pAm"></dd>
+          <dt>VS</dt><dd id="pVs"></dd>
+          <dt>Četnost</dt><dd>měsíčně, od <span id="pFrom"></span></dd>
+        </dl>
+        <p class="testnote">Testovací verze: účet je ukázkový ze standardu QR Platby. Nic neplať.</p>
+        <button class="btn" id="paid">Platbu jsem nastavil/a</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOTOVO -->
+  <section id="done" class="done" hidden>
+    <svg class="sigil" viewBox="0 0 100 100" aria-hidden="true" style="width:80px;height:80px"><circle cx="50" cy="50" r="46" fill="none" stroke="#c9a46a" stroke-width=".8"/><path d="M30 52 L45 66 L72 36" fill="none" stroke="#c9a46a" stroke-width="2"/></svg>
+    <h2>Dopis je na cestě</h2>
+    <p id="doneTxt" style="max-width:36ch"></p>
+    <p class="small muted">Jakmile se platba připíše, první kondiciogram dorazí na <span id="doneMail"></span>. Další vždy prvního dne v měsíci.</p>
+  </section>
+
+  <footer>Kondiciogram je určen pro zábavu a inspiraci, nenahrazuje odbornou radu.<br>Údaje používáme jen k odeslání tvých dopisů. Odhlásit se můžeš v každém z nich.</footer>
+</main>
+
+<script>
+/* ===== Nastavení – upravte před spuštěním ===== */
+const CONFIG = {
+  iban: "CZ6508000000192000145399",   // ukázkový účet ze standardu QR Platby – nahraďte svým
+  accountLabel: "19-2000145399/0800", // totéž v tuzemském tvaru pro ruční zadání
+  price: 99,
+  message: "KONDICIOGRAM",
+  endpoint: ""                        // URL backendu, který uloží předplatitele (zatím prázdné)
+};
+
+const PERIODS = [
+  {key:"body",  name:"Tělo",  len:23, color:"#d0848c"},
+  {key:"heart", name:"Srdce", len:28, color:"#79ada2"},
+  {key:"mind",  name:"Mysl",  len:33, color:"#c9a46a"}
+];
+const DAY = 86400000;
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,"0");
+const midnight = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+const daysBetween = (a,b) => Math.round((midnight(b)-midnight(a))/DAY);
+const val = (birth, day, len) => Math.sin(2*Math.PI*daysBetween(birth,day)/len);
+
+/* ===== Graf ===== */
+function chart(birth, start, days=30){
+  const W=640,H=230,L=34,R=12,T=14,B=30, w=W-L-R, h=H-T-B;
+  const x = i => L + i*(w/(days-1));
+  const y = v => T + (1-v)/2*h;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Průběh biorytmů na ${days} dní">`;
+  [1,0.5,0,-0.5,-1].forEach(v=>{
+    s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${v===0?'rgba(236,226,204,.35)':'rgba(236,226,204,.08)'}" stroke-width="1"/>`;
+  });
+  s += `<text x="${L-8}" y="${y(1)+4}" fill="#a99bb0" font-family="DM Mono,monospace" font-size="11" text-anchor="end">+</text>`;
+  s += `<text x="${L-8}" y="${y(-1)+4}" fill="#a99bb0" font-family="DM Mono,monospace" font-size="11" text-anchor="end">−</text>`;
+  for(let i=0;i<days;i+=5){
+    const d=new Date(start.getTime()+i*DAY);
+    s += `<text x="${x(i)}" y="${H-8}" fill="#a99bb0" font-family="DM Mono,monospace" font-size="11" text-anchor="middle">${d.getDate()}. ${d.getMonth()+1}.</text>`;
+  }
+  PERIODS.forEach(p=>{
+    let d="";
+    for(let i=0;i<=(days-1)*4;i++){
+      const t=i/4, day=new Date(start.getTime()+t*DAY);
+      const v=Math.sin(2*Math.PI*(daysBetween(birth,start)+t)/p.len);
+      d += (i?"L":"M")+x(t).toFixed(1)+" "+y(v).toFixed(1)+" ";
+    }
+    s += `<path d="${d}" fill="none" stroke="${p.color}" stroke-width="2" stroke-linecap="round"/>`;
+    // kritické dny = průchod nulou
+    for(let i=0;i<days-1;i++){
+      const a=val(birth,new Date(start.getTime()+i*DAY),p.len), b=val(birth,new Date(start.getTime()+(i+1)*DAY),p.len);
+      if(a===0 || (a>0)!==(b>0)){ const k = Math.abs(a)<Math.abs(b)?i:i+1; s += `<circle cx="${x(k)}" cy="${y(0)}" r="3.2" fill="#ece2cc" stroke="${p.color}" stroke-width="1.5"/>`; }
+    }
+  });
+  s += `<line x1="${x(0)}" x2="${x(0)}" y1="${T}" y2="${T+h}" stroke="#ece2cc" stroke-width="1" stroke-dasharray="2 3"/>`;
+  s += `<text x="${x(0)+6}" y="${T+10}" fill="#ece2cc" font-family="DM Mono,monospace" font-size="11">dnes</text>`;
+  return s+"</svg>";
+}
+
+/* ===== Otázky ===== */
+const QUESTIONS = [
+  {id:"name", type:"text", q:"Jak ti říkají ti, kdo tě znají nejlépe?", hint:"Stačí křestní jméno. Tím budou začínat tvé dopisy.", ph:"Tvé jméno"},
+  {id:"birth", type:"date", q:"Kdy ses poprvé nadechl/a?", hint:"Den narození roztáčí všechny tři rytmy."},
+  {id:"focus", type:"choice", q:"Co tě v posledních dnech nenechá usnout?", opts:[
+    ["love","Láska a blízcí","srdce"],["work","Práce a peníze","ruce"],["body","Tělo a energie","dech"],
+    ["choice","Rozhodnutí, které odkládám","práh"],["self","Já sám/sama","zrcadlo"]]},
+  {id:"element", type:"choice", q:"Který živel tě volá?", opts:[
+    ["fire","Oheň","odvaha"],["water","Voda","cit"],["air","Vzduch","myšlenka"],["earth","Země","vytrvalost"]]},
+  {id:"hour", type:"choice", q:"Kdy jsi nejvíc sebou?", opts:[
+    ["dawn","Za svítání","začátky"],["noon","V poledne","plná síla"],["dusk","Za soumraku","přechody"],["night","O půlnoci","tajemství"]]},
+  {id:"symbol", type:"choice", q:"Sáhni po jednom předmětu. Nepřemýšlej.", opts:[
+    ["key","Klíč","otevírá"],["eye","Oko","vidí"],["moon","Měsíc","proměňuje"],["snake","Had","svléká kůži"]]},
+  {id:"email", type:"email", q:"Kam ti máme posílat dopisy?", hint:"Jednou měsíčně, vždy prvního dne. Nic jiného.", ph:"jmeno@email.cz"}
+];
+const answers = {};
+let step = 0;
+
+function renderProgress(){
+  $("progress").innerHTML = QUESTIONS.map((_,i)=>`<i class="${i<=step?'on':''}"></i>`).join("");
+}
+function renderQ(){
+  const Q = QUESTIONS[step];
+  $("err").textContent = "";
+  let body = "";
+  if(Q.type==="choice"){
+    body = `<div class="opts" role="group" aria-label="${Q.q}">` + Q.opts.map(([v,l,s])=>
+      `<button class="opt" id="opt-${Q.id}-${v}" data-v="${v}" aria-pressed="${answers[Q.id]===v}">${l}<small>${s}</small></button>`).join("") + `</div>`;
+  } else {
+    const t = Q.type==="date"?"date":Q.type==="email"?"email":"text";
+    const extra = Q.type==="date" ? ` max="${new Date().toISOString().slice(0,10)}" min="1920-01-01"` : "";
+    body = `<input class="field" id="f-${Q.id}" aria-label="${Q.q}" type="${t}" placeholder="${Q.ph||""}" value="${answers[Q.id]||""}" autocomplete="${Q.type==='email'?'email':Q.type==='text'?'given-name':'bday'}"${extra}>`;
+    if(Q.type==="email") body += `<label class="consent"><input type="checkbox" id="f-consent" ${answers.consent?"checked":""}><span>Souhlasím se zasíláním kondiciogramu na tento e-mail a se zpracováním údajů, které jsem vyplnil/a, pouze pro tento účel.</span></label>`;
+  }
+  $("qslot").innerHTML = `<div class="q"><div><p class="eyebrow">Otázka ${step+1} ze ${QUESTIONS.length}</p></div><div><h2>${Q.q}</h2>${Q.hint?`<p class="hint">${Q.hint}</p>`:""}</div>${body}</div>`;
+  $("back").style.visibility = step===0 ? "hidden":"visible";
+  $("next").textContent = step===QUESTIONS.length-1 ? "Odhalit rytmy" : "Dál";
+  renderProgress();
+  if(Q.type==="choice"){
+    $("qslot").querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+      answers[Q.id]=b.dataset.v;
+      $("qslot").querySelectorAll(".opt").forEach(o=>o.setAttribute("aria-pressed", o===b));
+      setTimeout(next, 380);
+    }));
+  } else {
+    const f = $("f-"+Q.id); f.focus({preventScroll:true});
+    f.addEventListener("keydown",e=>{ if(e.key==="Enter") next(); });
+  }
+}
+function collect(){
+  const Q = QUESTIONS[step];
+  if(Q.type==="choice") return answers[Q.id] ? "" : "Vyber jednu z možností.";
+  const v = $("f-"+Q.id).value.trim();
+  if(Q.type==="text"){ if(!v) return "Napiš své jméno."; answers.name=v; }
+  if(Q.type==="date"){
+    const d = new Date(v+"T00:00:00");
+    if(!v || isNaN(d) || d>new Date() || d.getFullYear()<1920) return "Zadej platné datum narození.";
+    answers.birth=v;
+  }
+  if(Q.type==="email"){
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return "Tenhle e-mail nevypadá platně. Zkontroluj ho.";
+    answers.email=v;
+    answers.consent = $("f-consent").checked;
+    if(!answers.consent) return "Bez souhlasu ti dopisy poslat nemůžeme.";
+  }
+  return "";
+}
+function next(){
+  const e = collect();
+  if(e){ $("err").textContent = e; return; }
+  if(step < QUESTIONS.length-1){ step++; renderQ(); }
+  else showResult();
+}
+$("next").addEventListener("click", next);
+$("back").addEventListener("click", ()=>{ if(step>0){ step--; renderQ(); } });
+$("start").addEventListener("click", ()=>{
+  $("intro").hidden = true; $("quiz").hidden = false; renderQ(); window.scrollTo({top:0});
+});
+
+/* ===== Generátor výkladu (stejná logika poslouží i pro e-mail) ===== */
+const TXT = {
+  element:{
+    fire:"Oheň v tobě nesnáší čekání. Tam, kde ostatní váhají, ty už stojíš na druhém břehu.",
+    water:"Voda v tobě cítí proudy, které druzí přehlížejí. Tvá síla není v nárazu, ale ve vytrvalém tečení.",
+    air:"Vzduch v tobě spojuje nesouvisející věci. Odpovědi k tobě přicházejí, když se na chvíli přestaneš ptát.",
+    earth:"Země v tobě drží tvar, i když se všechno kolem hýbe. Co zasadíš teď, poneseš ještě dlouho."
+  },
+  hour:{
+    dawn:"Tvé nejlepší hodiny patří svítání. Důležité věci začínej dřív, než se svět probudí.",
+    noon:"Tvá síla vrcholí v poledne. Nejtěžší rozhovory nechávej na dobu, kdy stojí slunce nejvýš.",
+    dusk:"Soumrak je tvůj práh. V době mezi dnem a nocí se ti ukazuje to, co jinak zůstává skryté.",
+    night:"Půlnoc ti patří. Co vymyslíš po setmění, ověř si ráno, ale nezahazuj to."
+  },
+  symbol:{
+    key:"Vybral/a sis klíč. Někde blízko jsou zavřené dveře, ke kterým už ho máš. Jen jsi to zatím nezkusil/a.",
+    eye:"Vybral/a sis oko. Tento měsíc uvidíš něco, co jsi dlouho odmítal/a vidět. Nedívej se jinam.",
+    moon:"Vybral/a sis měsíc. Něco v tobě dorůstá, dej tomu čas do úplňku.",
+    snake:"Vybral/a sis hada. Starou kůži už nosíš jen ze zvyku. Pusť ji."
+  },
+  focus:{
+    love:["vztahy","V blízkých vztazích sleduj hlavně křivku srdce."],
+    work:["práci","V práci a penězích rozhoduje hlavně křivka mysli."],
+    body:["tělo","Pro tělo a energii je klíčová první křivka, tělesná."],
+    choice:["rozhodnutí","U odkládaného rozhodnutí hledej den, kdy mysl i srdce stoupají zároveň."],
+    self:["sebe","Když jde o tebe samotného/samotnou, dívej se na všechny tři rytmy najednou."]
+  }
+};
+function phase(birth, day, len){
+  const a=val(birth,day,len), b=val(birth,new Date(day.getTime()+DAY),len);
+  if(Math.abs(a)<0.14) return "kritický den";
+  if(a>0.7) return "vrchol";
+  if(a<-0.7) return "útlum";
+  return b>a ? "stoupá" : "klesá";
+}
+function bestDay(birth, today, keys){
+  let best=null, score=-9;
+  for(let i=1;i<30;i++){
+    const d=new Date(today.getTime()+i*DAY);
+    const s=keys.reduce((acc,k)=>acc+val(birth,d,PERIODS.find(p=>p.key===k).len),0);
+    if(s>score){score=s;best=d;}
+  }
+  return best;
+}
+function criticalDays(birth, today){
+  const out=[];
+  for(let i=0;i<30;i++){
+    const d=new Date(today.getTime()+i*DAY);
+    PERIODS.forEach(p=>{
+      const a=val(birth,d,p.len), b=val(birth,new Date(d.getTime()+DAY),p.len);
+      if((a>0)!==(b>0)) out.push({d:new Date(d.getTime()+(Math.abs(a)<Math.abs(b)?0:DAY)), p:p.name});
+    });
+  }
+  return out;
+}
+const fmt = d => `${d.getDate()}. ${d.getMonth()+1}.`;
+
+function buildReading(a){
+  const birth = new Date(a.birth+"T00:00:00");
+  const today = midnight(new Date());
+  const lived = daysBetween(birth, today);
+  const now = PERIODS.map(p=>({...p, v:val(birth,today,p.len), ph:phase(birth,today,p.len)}));
+  const strongest = [...now].sort((x,y)=>y.v-x.v)[0];
+  const weakest = [...now].sort((x,y)=>x.v-y.v)[0];
+  const focusKeys = {love:["heart"],work:["mind"],body:["body"],choice:["mind","heart"],self:["body","heart","mind"]}[a.focus];
+  const best = bestDay(birth, today, focusKeys);
+  const crit = criticalDays(birth, today);
+
+  const open = [
+    `Jsi tu ${lived.toLocaleString("cs-CZ")} dní. Za tu dobu tvé tělo oběhlo svůj kruh ${Math.floor(lived/23)}krát, srdce ${Math.floor(lived/28)}krát a mysl ${Math.floor(lived/33)}krát. Dnes je nejsilnější ${strongest.name.toLowerCase()} (${strongest.ph}) a nejtišší ${weakest.name.toLowerCase()} (${weakest.ph}).`,
+    TXT.element[a.element]
+  ];
+  const sealed = [
+    `${TXT.focus[a.focus][1]} Nejpříznivější den, kdy se věnovat tématu „${TXT.focus[a.focus][0]}", připadá na ${fmt(best)}. V ten den se tvé rytmy sčítají.`,
+    TXT.hour[a.hour],
+    TXT.symbol[a.symbol],
+    crit.length ? `Kritických dní, kdy některá křivka prochází nulou, tě čeká ${crit.length}: ${crit.slice(0,4).map(c=>fmt(c.d)+" ("+c.p.toLowerCase()+")").join(", ")}${crit.length>4?" a další":""}. V takové dny nepodepisuj nic, co nemusíš.` : ""
+  ].filter(Boolean);
+  return {birth, today, now, open, sealed};
+}
+
+/* ===== Výsledek a platba ===== */
+function makeVS(){ return String(Math.floor(1e9 + Math.random()*9e9)); }
+function stripDia(s){ return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\*/g,"").toUpperCase(); }
+
+function showResult(){
+  const r = buildReading(answers);
+  answers.vs = answers.vs || makeVS();
+  $("quiz").hidden = true; $("result").hidden = false; window.scrollTo({top:0});
+
+  const d=r.today;
+  $("rDate").textContent = `Kondiciogram · ${d.getDate()}. ${d.getMonth()+1}. ${d.getFullYear()}`;
+  $("rTitle").textContent = `Rytmy pro ${answers.name}`;
+  $("rToday").innerHTML = r.now.map(p=>`<div><span class="l">${p.name}</span><span class="v" style="color:${p.color}">${p.v>=0?"+":"−"}${Math.round(Math.abs(p.v)*100)} %</span><span class="s">${p.ph}</span></div>`).join("");
+  $("rChart").innerHTML = chart(r.birth, r.today);
+  $("rOpen").innerHTML = r.open.map(t=>`<p>${t}</p>`).join("");
+  $("rSealed").innerHTML = r.sealed.map(t=>`<p>${t}</p>`).join("");
+
+  // QR platba – trvalý příkaz (FRQ/DT)
+  const dt = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+  const spd = `SPD*1.0*ACC:${CONFIG.iban}*AM:${CONFIG.price.toFixed(2)}*CC:CZK*X-VS:${answers.vs}*MSG:${stripDia(CONFIG.message+" "+answers.name).slice(0,60)}*FRQ:1M*DT:${dt}`;
+  answers.spd = spd;
+  try{
+    const q = qrcode(0,"M"); q.addData(spd); q.make();
+    $("qr").innerHTML = q.createSvgTag({cellSize:4, margin:0, scalable:true});
+  }catch(e){ $("qr").textContent = "QR kód se nepodařilo vytvořit. Použij údaje vpravo."; }
+  $("priceTxt").textContent = CONFIG.price;
+  $("pAcc").textContent = CONFIG.accountLabel;
+  $("pAm").textContent = CONFIG.price + " Kč";
+  $("pVs").textContent = answers.vs;
+  $("pFrom").textContent = fmt(d)+" "+d.getFullYear();
+}
+
+$("paid").addEventListener("click", async ()=>{
+  const payload = {name:answers.name, birth:answers.birth, focus:answers.focus, element:answers.element,
+    hour:answers.hour, symbol:answers.symbol, email:answers.email, vs:answers.vs, created:new Date().toISOString()};
+  if(CONFIG.endpoint){
+    try{ await fetch(CONFIG.endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}); }catch(e){}
+  } else { console.log("Předplatitel (backend zatím není napojen):", payload); }
+  $("result").hidden = true; $("done").hidden = false; window.scrollTo({top:0});
+  $("doneTxt").textContent = `${answers.name}, tvůj variabilní symbol je ${answers.vs}. Schovej si ho, je to tvůj klíč.`;
+  $("doneMail").textContent = answers.email;
+});
+
+/* ===== Ukázka na úvodu ===== */
+$("sampleChart").innerHTML = chart(new Date(1988,2,14), midnight(new Date()));
+
+/* ===== Hvězdná obloha ===== */
+(function(){
+  const c=$("sky"), g=c.getContext("2d"); let stars=[], W, H;
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function size(){ W=c.width=innerWidth*devicePixelRatio; H=c.height=innerHeight*devicePixelRatio;
+    stars=Array.from({length:Math.round(innerWidth*innerHeight/5200)},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.1+.2)*devicePixelRatio,p:Math.random()*6.28,s:.004+Math.random()*.012})); }
+  function draw(){ g.clearRect(0,0,W,H);
+    for(const s of stars){ s.p+=s.s; const a=.25+.55*(0.5+0.5*Math.sin(s.p));
+      g.fillStyle=`rgba(236,226,204,${a})`; g.beginPath(); g.arc(s.x,s.y,s.r,0,6.283); g.fill(); }
+    if(!still) requestAnimationFrame(draw); }
+  addEventListener("resize",()=>{size(); if(still) draw();}); size(); draw();
+})();
+</script>
+
+</body>
+</html>
