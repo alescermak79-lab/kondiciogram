@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Osobní kondiciogram – tvé biorytmy a tajemný výklad na příštích 30 dní, každý měsíc do e-mailu.">
-<title>Osobní kondiciogram</title>
+<meta name="description" content="Věštírna u Jolandy – osobní výklad karet na tvou otázku. Vyložíme, zapíšeme a pošleme ti ho e-mailem do 24 hodin.">
+<title>Věštírna u Jolandy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap">
@@ -13,19 +13,19 @@
   [hidden]{display:none!important}
   body{margin:0}
   img{max-width:100%}
-  /* Jeden záměrný noční svět – stejný v obou režimech */
+
   :root{
     color-scheme: dark;
-    --night:#150f1c;
-    --night-2:#1e1628;
-    --veil:#2a2035;
-    --ink:#ece2cc;
-    --ink-dim:#a99bb0;
-    --brass:#c9a46a;
-    --brass-dim:#8a7048;
-    --rose:#d0848c;
-    --verdigris:#79ada2;
-    --line:rgba(236,226,204,.14);
+    --night:#140a17;
+    --velvet:#24102a;
+    --wine:#5b1330;
+    --ink:#f2e6d2;
+    --ink-dim:#b7a2bd;
+    --gold:#d9b35c;
+    --gold-dim:#8f7139;
+    --rose:#d98a9a;
+    --sage:#8ab3a6;
+    --line:rgba(242,230,210,.14);
     --display:"IM Fell English SC","Iowan Old Style","Palatino Linotype",Georgia,serif;
     --fell:"IM Fell English","Iowan Old Style","Palatino Linotype",Georgia,serif;
     --body:"Spectral","Iowan Old Style",Georgia,serif;
@@ -33,82 +33,150 @@
   }
   html,body{background:var(--night);color:var(--ink)}
   body{font-family:var(--body);font-weight:300;font-size:18px;line-height:1.65;padding-inline:20px;min-height:100%;
-    background:radial-gradient(ellipse 90% 60% at 50% -10%, #3a2442 0%, rgba(58,36,66,0) 60%), var(--night);}
+    background:radial-gradient(ellipse 90% 55% at 50% -8%, #4a1540 0%, rgba(74,21,64,0) 62%), var(--night);}
   #sky{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-  main{position:relative;z-index:1;max-width:680px;margin:0 auto;padding-block:56px 80px;display:flex;flex-direction:column;gap:56px}
+  main{position:relative;z-index:1;max-width:680px;margin:0 auto;padding-block:52px 80px;display:flex;flex-direction:column;gap:56px}
   h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   p{margin:0}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
   .muted{color:var(--ink-dim)}
   .small{font-size:15px}
 
+  /* Atmosféra */
+  .nebula{position:fixed;inset:-20%;pointer-events:none;z-index:0;filter:blur(44px);opacity:.8}
+  .nebula.n1{background:radial-gradient(40% 35% at 28% 22%, rgba(91,19,48,.55), transparent 70%),radial-gradient(35% 30% at 76% 62%, rgba(56,20,78,.6), transparent 70%);animation:drift1 64s ease-in-out infinite alternate}
+  .nebula.n2{background:radial-gradient(30% 25% at 62% 18%, rgba(217,179,92,.14), transparent 70%),radial-gradient(45% 35% at 18% 82%, rgba(60,25,60,.45), transparent 70%);animation:drift2 86s ease-in-out infinite alternate}
+  @keyframes drift1{to{transform:translate(4%,3%) rotate(6deg) scale(1.08)}}
+  @keyframes drift2{to{transform:translate(-5%,-2%) rotate(-5deg) scale(1.1)}}
+  .vignette{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 75% 70% at 50% 40%, transparent 38%, rgba(6,2,9,.88) 100%)}
+  .gold{background:linear-gradient(100deg,#8f7139 0%,#f6e3b4 35%,#d9b35c 55%,#fbefcd 70%,#8f7139 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 9s linear infinite}
+  @keyframes shimmer{to{background-position:-220% 0}}
+
   /* Hero */
   .hero{display:flex;flex-direction:column;gap:22px;text-align:center;align-items:center}
-  .sigil{width:92px;height:92px}
-  .hero h1{font-family:var(--display);font-size:clamp(44px,9vw,76px);line-height:1;letter-spacing:.02em}
-  .hero h1 em{font-family:var(--fell);font-style:italic;color:var(--brass);display:block;font-size:.42em;letter-spacing:.04em;margin-top:10px;text-transform:none}
-  .hero .lede{font-size:20px;max-width:34ch;color:var(--ink)}
-  .hero .lede i{font-family:var(--fell);color:var(--brass)}
+  .hero h1{font-family:var(--display);font-size:clamp(40px,8.4vw,70px);line-height:1;letter-spacing:.02em}
+  .hero h1 em{font-family:var(--fell);font-style:italic;color:var(--gold);display:block;font-size:.4em;letter-spacing:.04em;margin-top:12px;text-transform:none}
+  .hero .lede{font-size:20px;max-width:36ch;color:var(--ink)}
+  .hero .lede i{font-family:var(--fell);color:var(--gold)}
+
+  /* Křišťálová koule */
+  .orb{position:relative;width:min(260px,70vw);aspect-ratio:1;margin-bottom:-6px}
+  .orb svg{position:absolute;inset:0;width:100%;height:100%}
+  .orb .r1{animation:spin 120s linear infinite}
+  .orb .r2{animation:spin 88s linear infinite reverse}
+  .orb .core{animation:breathe 6s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes breathe{50%{opacity:.5;transform:scale(.95)}}
+  .orb svg g{transform-origin:150px 150px;transform-box:view-box}
+  .orb::after{content:"";position:absolute;inset:24%;border-radius:50%;background:radial-gradient(circle, rgba(217,179,92,.3), rgba(91,19,48,.25) 55%, transparent 72%);filter:blur(14px);animation:breathe 6s ease-in-out infinite}
 
   /* Tlačítka */
-  .btn{appearance:none;border:1px solid var(--brass);background:transparent;color:var(--ink);font-family:var(--display);font-size:20px;letter-spacing:.08em;padding:14px 30px;cursor:pointer;transition:background .3s,color .3s}
-  .btn:hover{background:var(--brass);color:var(--night)}
-  .btn:focus-visible,.opt:focus-visible,input:focus-visible,.link:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+  .btn{appearance:none;border:1px solid var(--gold);background:transparent;color:var(--ink);font-family:var(--display);font-size:20px;letter-spacing:.08em;padding:14px 30px;cursor:pointer;transition:background .3s,color .3s}
+  .btn:hover{background:var(--gold);color:var(--night)}
+  .btn:focus-visible,.opt:focus-visible,input:focus-visible,textarea:focus-visible,.link:focus-visible,.card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
   .btn[disabled]{opacity:.35;cursor:not-allowed}
   .btn[disabled]:hover{background:transparent;color:var(--ink)}
   .link{appearance:none;background:none;border:0;color:var(--ink-dim);font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:8px 0}
   .link:hover{color:var(--ink)}
 
-  /* Graf */
-  .chartbox{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:22px;display:flex;flex-direction:column;gap:14px}
-  .chartwrap{overflow-x:auto}
-  .chartwrap svg{display:block;width:100%;min-width:480px;height:auto}
-  .legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:13px;color:var(--ink-dim)}
-  .legend span{display:inline-flex;align-items:center;gap:8px}
-  .legend b{display:inline-block;width:18px;height:2px}
+  .whisper{max-width:30ch;margin-inline:auto;font-family:var(--fell);font-style:italic;font-size:21px;line-height:1.5;text-align:center;position:relative;padding-block:6px}
+  .whisper::before,.whisper::after{content:"";display:block;width:60px;height:1px;margin:14px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .whisper small{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+
+  /* Příběh */
+  .story{display:flex;flex-direction:column;gap:28px}
+  .story h2,.gifts h2,.how h2,.faq h2{font-family:var(--display);font-size:clamp(30px,6vw,42px);line-height:1.1;text-align:center}
+  .story .intro{text-align:center;color:var(--ink-dim);max-width:44ch;margin:0 auto}
+  .chapters{display:flex;flex-direction:column;border-left:1px solid var(--gold-dim);margin-left:10px}
+  .chapter{position:relative;padding:0 0 26px 28px;display:flex;flex-direction:column;gap:6px}
+  .chapter::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--night);border:1px solid var(--gold);box-shadow:0 0 12px rgba(217,179,92,.6)}
+  .chapter .yr{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--gold)}
+  .chapter h3{font-family:var(--fell);font-size:24px;line-height:1.25}
+  .chapter p{color:var(--ink-dim);font-size:17px}
+  .chapter b{color:var(--ink);font-weight:400}
+  .honest{font-size:15px;color:var(--ink-dim);font-style:italic;text-align:center;max-width:48ch;margin:0 auto}
+
+  /* Dary + jak to chodí */
+  .gifts,.how,.faq{display:flex;flex-direction:column;gap:24px}
+  .giftlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .gift{background:rgba(20,10,23,.92);padding:22px 20px;display:flex;flex-direction:column;gap:8px}
+  .gift .g{font-family:var(--display);font-size:30px;line-height:1;color:var(--gold)}
+  .gift h3{font-family:var(--fell);font-size:21px}
+  .gift p{font-size:16px;color:var(--ink-dim)}
+  .steps{display:flex;flex-direction:column;gap:14px;counter-reset:s}
+  .step{display:flex;gap:18px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .step:last-child{border-bottom:0}
+  .step .n{font-family:var(--display);font-size:26px;color:var(--gold);line-height:1.2;min-width:1.4em}
+  .step h3{font-family:var(--fell);font-size:20px}
+  .step p{font-size:16px;color:var(--ink-dim)}
+  .pricecard{border:1px solid var(--gold-dim);background:rgba(91,19,48,.14);padding:22px 24px;text-align:center;display:flex;flex-direction:column;gap:8px}
+  .pricecard .amt{font-family:var(--display);font-size:42px;color:var(--gold);line-height:1}
+  details{border-bottom:1px solid var(--line);padding:12px 0}
+  summary{cursor:pointer;font-family:var(--fell);font-size:19px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"✦ ";color:var(--gold)}
+  details p{font-size:16px;color:var(--ink-dim);padding-top:8px}
+  .cta2{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
 
   /* Otázky */
   .quiz{display:flex;flex-direction:column;gap:28px}
   .progress{display:flex;gap:6px}
   .progress i{flex:1;height:2px;background:var(--line)}
-  .progress i.on{background:var(--brass)}
+  .progress i.on{background:var(--gold)}
   .q h2{font-family:var(--fell);font-size:clamp(28px,5.4vw,38px);line-height:1.2}
   .q .hint{margin-top:10px;color:var(--ink-dim);font-size:16px}
   .q{display:flex;flex-direction:column;gap:22px;animation:rise .6s ease both}
   @keyframes rise{from{opacity:.001;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .field{width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid var(--brass-dim);color:var(--ink);font-family:var(--fell);font-size:28px;padding:8px 2px;color-scheme:dark}
-  .field::placeholder{color:#6e6078}
+  .field{width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid var(--gold-dim);color:var(--ink);font-family:var(--fell);font-size:28px;padding:8px 2px;color-scheme:dark}
+  textarea.field{font-size:21px;line-height:1.5;border:1px solid var(--gold-dim);padding:14px;min-height:130px;resize:vertical}
+  .field::placeholder{color:#7a6480}
   .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-  .opt{appearance:none;text-align:left;background:rgba(30,22,40,.6);border:1px solid var(--line);color:var(--ink);padding:16px 18px;cursor:pointer;font-family:var(--body);font-size:17px;display:flex;flex-direction:column;gap:4px;transition:border-color .25s,background .25s}
+  .opt{appearance:none;text-align:left;background:rgba(36,16,42,.6);border:1px solid var(--line);color:var(--ink);padding:16px 18px;cursor:pointer;font-family:var(--body);font-size:17px;display:flex;flex-direction:column;gap:4px;transition:border-color .25s,background .25s}
   .opt small{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-dim)}
-  .opt:hover{border-color:var(--brass-dim)}
-  .opt[aria-pressed="true"]{border-color:var(--brass);background:rgba(201,164,106,.12)}
+  .opt:hover{border-color:var(--gold-dim)}
+  .opt[aria-pressed="true"]{border-color:var(--gold);background:rgba(217,179,92,.12)}
   .consent{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-dim)}
-  .consent input{margin-top:5px;accent-color:var(--brass);width:18px;height:18px;flex:none}
+  .consent input{margin-top:5px;accent-color:var(--gold);width:18px;height:18px;flex:none}
   .nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
   .err{color:var(--rose);font-size:15px;min-height:1.4em}
+  .counter{font-family:var(--mono);font-size:12px;color:var(--ink-dim);text-align:right}
+
+  /* Karty */
+  .deck{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:10px}
+  .card{appearance:none;padding:0;border:1px solid var(--gold-dim);background:linear-gradient(150deg,#31143a,#1b0c20);color:var(--gold);aspect-ratio:.63;border-radius:6px;cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;font-size:26px;transition:transform .3s,border-color .3s,box-shadow .3s}
+  .card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(217,179,92,.35);border-radius:3px}
+  .card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 10px 26px rgba(0,0,0,.5)}
+  .card[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 0 24px rgba(217,179,92,.35);transform:translateY(-6px)}
+  .card .back{font-family:var(--display);opacity:.8}
+  .spread{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .laid{border:1px solid var(--gold-dim);border-radius:6px;background:linear-gradient(160deg,rgba(49,20,58,.9),rgba(20,10,23,.95));padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;animation:flip .7s ease both}
+  @keyframes flip{from{opacity:.001;transform:rotateY(70deg)}to{opacity:1;transform:none}}
+  .laid .pos{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim)}
+  .laid .sym{font-size:38px;color:var(--gold);line-height:1}
+  .laid .nm{font-family:var(--fell);font-size:19px;line-height:1.2}
+  @media (max-width:520px){.spread{grid-template-columns:1fr}.laid{flex-direction:row;text-align:left;gap:14px}.laid .sym{font-size:30px}}
 
   /* Výklad */
   .reading{display:flex;flex-direction:column;gap:30px}
-  .reading h2{font-family:var(--display);font-size:clamp(34px,7vw,52px);line-height:1.05}
-  .today{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-  .today div{background:var(--night);padding:16px 14px;display:flex;flex-direction:column;gap:4px}
-  .today .v{font-family:var(--mono);font-size:26px;font-variant-numeric:tabular-nums}
-  .today .l{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim)}
-  .today .s{font-size:14px;color:var(--ink-dim);font-style:italic}
+  .reading h2{font-family:var(--display);font-size:clamp(32px,6.6vw,50px);line-height:1.05}
+  .qbox{border-left:2px solid var(--gold);padding:6px 0 6px 18px;font-family:var(--fell);font-style:italic;font-size:21px}
   .text{display:flex;flex-direction:column;gap:18px}
-  .text p:first-child::first-letter{font-family:var(--display);float:left;font-size:3.4em;line-height:.85;padding:6px 10px 0 0;color:var(--brass)}
+  .text p:first-child::first-letter{font-family:var(--display);float:left;font-size:3.4em;line-height:.85;padding:6px 10px 0 0;color:var(--gold)}
   .sealed{position:relative;display:flex;flex-direction:column;gap:18px}
-  .sealed .blur{filter:blur(6px);user-select:none;opacity:.55}
+  .sealed .blur{filter:blur(6px);user-select:none;opacity:.5}
   .seal{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
   .seal svg{width:74px;height:74px}
   .seal p{font-family:var(--fell);font-style:italic;font-size:20px;max-width:26ch}
+  .advice{border:1px solid var(--gold-dim);padding:22px 24px;background:rgba(91,19,48,.16);display:flex;flex-direction:column;gap:8px}
+  .advice .eyebrow{color:var(--rose)}
+  .advice p{font-family:var(--fell);font-size:21px;line-height:1.45}
+  .advice p.eyebrow{font-family:var(--mono);font-size:12px;line-height:1.4}
 
   /* Platba */
-  .pay{border:1px solid var(--brass-dim);padding:28px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;background:rgba(21,15,28,.8)}
+  .pay{border:1px solid var(--gold-dim);padding:28px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;background:rgba(20,10,23,.82)}
   .pay h3{font-family:var(--display);font-size:28px}
-  .price{font-family:var(--fell);font-size:22px;color:var(--brass)}
-  .qr{background:#f3ecdc;color:#150f1c;font-size:14px;padding:10px;width:200px;max-width:100%;box-sizing:border-box}
+  .price{font-family:var(--fell);font-size:22px;color:var(--gold)}
+  .qr{background:#f6efe0;color:#140a17;font-size:14px;padding:10px;width:200px;max-width:100%;box-sizing:border-box}
   .qr svg{display:block;width:100%;height:auto}
   dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0;font-size:15px}
   dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);padding-top:4px}
@@ -118,60 +186,9 @@
 
   .done{text-align:center;display:flex;flex-direction:column;gap:18px;align-items:center}
   .done h2{font-family:var(--display);font-size:clamp(34px,7vw,48px)}
-  footer{font-size:13px;color:#7a6c82;text-align:center;font-family:var(--mono);letter-spacing:.04em;line-height:1.7}
-  .testbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin-inline:-20px;background:#7a2f3a;color:#ece2cc;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px}
-  .testnote{border:1px dashed var(--rose);color:var(--rose);padding:10px 14px;font-size:14px}
-
-  /* ===== Tajemná vrstva ===== */
-  body{background:#0e0a14}
-  .nebula{position:fixed;inset:-20%;pointer-events:none;z-index:0;filter:blur(40px);opacity:.75}
-  .nebula.n1{background:radial-gradient(40% 35% at 30% 25%, rgba(122,47,58,.45), transparent 70%),radial-gradient(35% 30% at 75% 60%, rgba(58,36,90,.55), transparent 70%);animation:drift1 60s ease-in-out infinite alternate}
-  .nebula.n2{background:radial-gradient(30% 25% at 60% 20%, rgba(201,164,106,.12), transparent 70%),radial-gradient(45% 35% at 20% 80%, rgba(40,70,80,.35), transparent 70%);animation:drift2 80s ease-in-out infinite alternate}
-  @keyframes drift1{to{transform:translate(4%,3%) rotate(6deg) scale(1.08)}}
-  @keyframes drift2{to{transform:translate(-5%,-2%) rotate(-5deg) scale(1.1)}}
-  .vignette{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 75% 70% at 50% 40%, transparent 40%, rgba(5,3,8,.85) 100%)}
-  .gold{background:linear-gradient(100deg,#8a7048 0%,#f0dcb0 35%,#c9a46a 55%,#f5e6c4 70%,#8a7048 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 9s linear infinite}
-  @keyframes shimmer{to{background-position:-220% 0}}
-
-  .astro{position:relative;width:min(300px,78vw);aspect-ratio:1;margin-bottom:-8px}
-  .astro svg{position:absolute;inset:0;width:100%;height:100%}
-  .astro .r1{animation:spin 120s linear infinite}
-  .astro .r2{animation:spin 90s linear infinite reverse}
-  .astro .r3{animation:spin 66s linear infinite}
-  .astro .core{animation:breathe 6s ease-in-out infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  @keyframes breathe{50%{opacity:.55;transform:scale(.96)}}
-  .astro svg g{transform-origin:150px 150px;transform-box:view-box}
-  .astro::after{content:"";position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle, rgba(201,164,106,.28), transparent 70%);filter:blur(12px);animation:breathe 6s ease-in-out infinite}
-
-  .whisper{max-width:30ch;margin-inline:auto;font-family:var(--fell);font-style:italic;font-size:21px;line-height:1.5;color:var(--ink);text-align:center;position:relative;padding-block:6px}
-  .whisper::before,.whisper::after{content:"";display:block;width:60px;height:1px;margin:14px auto;background:linear-gradient(90deg,transparent,var(--brass),transparent)}
-  .whisper small{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
-
-  .story{display:flex;flex-direction:column;gap:28px}
-  .story h2,.gifts h2{font-family:var(--display);font-size:clamp(30px,6vw,42px);line-height:1.1;text-align:center}
-  .story .intro{text-align:center;color:var(--ink-dim);max-width:44ch;margin:0 auto}
-  .chapters{display:flex;flex-direction:column;gap:0;border-left:1px solid var(--brass-dim);margin-left:10px}
-  .chapter{position:relative;padding:0 0 26px 28px;display:flex;flex-direction:column;gap:6px}
-  .chapter::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--night);border:1px solid var(--brass);box-shadow:0 0 12px rgba(201,164,106,.6)}
-  .chapter .yr{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--brass)}
-  .chapter h3{font-family:var(--fell);font-size:24px;line-height:1.25}
-  .chapter p{color:var(--ink-dim);font-size:17px}
-  .chapter b{color:var(--ink);font-weight:400}
-  .honest{font-size:15px;color:var(--ink-dim);font-style:italic;text-align:center;max-width:48ch;margin:0 auto}
-
-  .gifts{display:flex;flex-direction:column;gap:24px}
-  .giftlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-  .gift{background:rgba(14,10,20,.92);padding:22px 20px;display:flex;flex-direction:column;gap:8px}
-  .gift .g{font-family:var(--display);font-size:30px;line-height:1;color:var(--brass)}
-  .gift h3{font-family:var(--fell);font-size:21px}
-  .gift p{font-size:16px;color:var(--ink-dim)}
-  .cta2{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-  .advice{border:1px solid var(--brass-dim);padding:22px 24px;background:rgba(122,47,58,.12);display:flex;flex-direction:column;gap:8px}
-  .advice .eyebrow{color:var(--rose)}
-  .advice p{font-family:var(--fell);font-size:21px;line-height:1.45}
-  .advice p.eyebrow{font-family:var(--mono);font-size:12px;line-height:1.4}
-  @media (prefers-reduced-motion:reduce){.q,.nebula,.astro *,.astro::after,.gold{animation:none!important}}
+  footer{font-size:13px;color:#8a7790;text-align:center;font-family:var(--mono);letter-spacing:.04em;line-height:1.7}
+  .testbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin-inline:-20px;background:#5b1330;color:#f2e6d2;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px}
+  @media (prefers-reduced-motion:reduce){.q,.laid,.nebula,.orb *,.orb::after,.gold{animation:none!important}}
 </style>
 </head>
 <body>
@@ -179,83 +196,94 @@
 <div class="nebula n1" aria-hidden="true"></div><div class="nebula n2" aria-hidden="true"></div>
 <canvas id="sky" aria-hidden="true"></canvas>
 <div class="vignette" aria-hidden="true"></div>
-<main>
 
+<main>
   <!-- ÚVOD -->
   <section id="intro" style="display:flex;flex-direction:column;gap:72px">
     <div class="hero">
-      <div class="astro" aria-hidden="true">
-        <svg viewBox="0 0 300 300">
-          <g class="r1" id="ringBody"></g>
-          <g class="r2" id="ringHeart"></g>
-          <g class="r3" id="ringMind"></g>
-          <g class="core">
-            <path d="M60 150 C 90 95, 120 95, 150 150 S 210 205, 240 150" fill="none" stroke="#d0848c" stroke-width="1.3"/>
-            <path d="M60 150 C 95 110, 125 190, 160 150 S 220 115, 240 150" fill="none" stroke="#79ada2" stroke-width="1.3"/>
-            <path d="M60 150 C 100 205, 140 95, 185 150 S 225 170, 240 150" fill="none" stroke="#c9a46a" stroke-width="1.3"/>
-            <circle cx="150" cy="150" r="3.2" fill="#f5e6c4"/>
+      <div class="orb" aria-hidden="true">
+        <svg viewBox="0 0 300 300" fill="none" stroke="#d9b35c">
+          <g class="r1" opacity=".55"><circle cx="150" cy="150" r="128" stroke-dasharray="2 9" stroke-width="1"/></g>
+          <g class="r2" opacity=".7"><circle cx="150" cy="150" r="104" stroke-dasharray="26 14" stroke-width="1"/></g>
+          <g class="core" opacity=".9">
+            <circle cx="150" cy="150" r="74" stroke-width="1.2"/>
+            <path d="M150 76 L212 187 H88 Z" stroke-width="1" opacity=".5"/>
+            <path d="M150 224 L88 113 H212 Z" stroke-width="1" opacity=".5"/>
+            <circle cx="150" cy="150" r="10" stroke-width="1.2"/>
           </g>
         </svg>
       </div>
-      <p class="eyebrow">Staré vídeňské učení · tři rytmy · jeden dopis</p>
-      <h1><span class="gold">Kondiciogram</span><em>co tvé tělo ví dřív než ty</em></h1>
-      <p class="lede">Od první chvíle, kdy ses nadechl/a, v tobě tiše tikají tři hodiny. Určují dny síly i dny, kdy je lepší mlčet. <i>Odpověz na sedm otázek</i> a každý měsíc ti přijde dopis s radami, kdy jednat, kdy odpočívat a kdy konečně udělat to, co odkládáš.</p>
-      <button class="btn" id="start">Otevřít bránu</button>
+      <h1><span class="gold">Věštírna u Jolandy</span><em>zeptej se na to, co tě tíží</em></h1>
+      <p class="lede">Polož jednu otázku, vytáhni tři karty a Jolanda ti <i>vyloží, co ukazují</i>. Výklad ti přijde e-mailem do 24 hodin.</p>
+      <button class="btn" id="start">Odhrnout závěs</button>
     </div>
 
-    <p class="whisper" id="whisper"><small>Šepot pro dnešek</small><span id="whisperTxt">Co odkládáš nejdéle, to tě stojí nejvíc sil.</span></p>
+    <p class="whisper" id="whisper"><small>Šepot pro dnešek</small><span id="whisperTxt">Kdo se ptá nahlas, bývá první, kdo uslyší odpověď.</span></p>
 
-    <div class="story">
-      <h2>Odkud se ta magie bere</h2>
-      <p class="intro">Na přelomu století si tři muži ve třech městech všimli téhož: lidé mají dobré a špatné dny v podivně pravidelném rytmu.</p>
+    <section class="story">
+      <h2>Kdo je Jolanda</h2>
+      <p class="intro">Věštírna stojí v podkroví starého domu, kde voní vosk a sušená máta. Karty v ní leží už čtvrtou generaci.</p>
       <div class="chapters">
         <div class="chapter">
-          <span class="yr">BERLÍN · 90. LÉTA 19. STOLETÍ</span>
-          <h3>Lékař, který počítal dny</h3>
-          <p>Berlínský lékař <b>Wilhelm Fliess</b> léta zapisoval horečky, nálady a slabosti svých pacientů. Z poznámek mu vystoupila dvě čísla: <b>23 dní</b> pro tělo a <b>28 dní</b> pro city.</p>
+          <span class="yr">Babička</span>
+          <h3>Balíček zabalený v plátně</h3>
+          <p>Jolandina babička vykládala <b>karty madam Lenormand</b> sousedkám u kamen. Nikdy si neřekla o peníze — brala vejce, mouku a mlčení.</p>
         </div>
         <div class="chapter">
-          <span class="yr">VÍDEŇ · KOLEM ROKU 1900</span>
-          <h3>Psycholog, který došel ke stejným číslům</h3>
-          <p>Vídeňský psycholog <b>Hermann Swoboda</b> sledoval sny a nápady a nezávisle na Fliessovi objevil stejné periody. Dva lidé ve dvou městech, jeden rytmus.</p>
+          <span class="yr">Matka</span>
+          <h3>Sešit s odpověďmi</h3>
+          <p>Matka po ní balíček zdědila a začala si <b>zapisovat, co se vyplnilo</b>. Sešitů je dnes jedenáct a Jolanda je čte dodnes.</p>
         </div>
         <div class="chapter">
-          <span class="yr">INNSBRUCK · 20. LÉTA 20. STOLETÍ</span>
-          <h3>Učitel a třetí hodiny</h3>
-          <p>Inženýr a učitel <b>Alfred Teltscher</b> si všiml, že studentům jde učení v cyklech po <b>33 dnech</b>. Tak vznikla třetí křivka: mysl.</p>
+          <span class="yr">Jolanda</span>
+          <h3>Karty a obyčejný rozum</h3>
+          <p>Jolanda k výkladu přidává to, co se naučila za třicet let poslouchání lidí: <b>karta nic nerozhodne za tebe</b>, jen pojmenuje, co už tušíš.</p>
         </div>
-        <div class="chapter" style="padding-bottom:0">
-          <span class="yr">DNES</span>
-          <h3>Tvůj vlastní kondiciogram</h3>
-          <p>Ze dne tvého narození spočítáme, kde se všechny tři křivky právě nacházejí, a přeložíme je do řeči, které rozumí život: <b>kdy jednat, kdy počkat, kdy odpustit.</b></p>
+        <div class="chapter">
+          <span class="yr">Dnes</span>
+          <h3>Výklad, který si můžeš přečíst znovu</h3>
+          <p>Místo tří minut po telefonu dostaneš <b>psaný výklad na tvou otázku</b> — v klidu, v celku a kdykoli se k němu můžeš vrátit.</p>
         </div>
       </div>
-      <p class="honest">Věda biorytmy nepotvrdila. Nečti je jako proroctví, ale jako zrcadlo. Kdo se jednou za měsíc zastaví a zeptá se sám sebe, jak mu je, už udělal první krok.</p>
-    </div>
+      <p class="honest">Věštírna je zábava a zrcadlo, ne lékař, právník ani finanční poradce. Rozhodnutí zůstává vždy tvoje.</p>
+    </section>
 
-    <div class="gifts">
-      <h2>Co ti dopis přinese</h2>
+    <section class="gifts">
+      <h2>Co ti přijde do schránky</h2>
       <div class="giftlist">
-        <div class="gift"><span class="g">I</span><h3>Dny síly</h3><p>Kdy máš nejvíc energie na důležitý rozhovor, podpis smlouvy nebo nový začátek.</p></div>
-        <div class="gift"><span class="g">II</span><h3>Dny ticha</h3><p>Kritické dny, kdy se křivky lámou. Tehdy zpomal, nehádej se a nic zásadního nerozhoduj.</p></div>
-        <div class="gift"><span class="g">III</span><h3>Rada do života</h3><p>Jedna věta, kterou si ponese celý měsíc. Šitá na míru tomu, co tě právě trápí.</p></div>
-        <div class="gift"><span class="g">IV</span><h3>Tvůj symbol</h3><p>Výklad předmětu, po kterém jsi sáhl/a, a živlu, který tě volá.</p></div>
+        <div class="gift"><span class="g">I</span><h3>Tvůj rozklad</h3><p>Tři karty — co bylo, co je a kam to míří — a jak spolu ve tvé otázce mluví.</p></div>
+        <div class="gift"><span class="g">II</span><h3>Odpověď na otázku</h3><p>Ne obecná moudra, ale text psaný přímo k tomu, na co ses zeptal/a.</p></div>
+        <div class="gift"><span class="g">III</span><h3>Dny, kdy jednat</h3><p>Které období příštích týdnů ti podle výkladu přeje a kdy raději počkat.</p></div>
+        <div class="gift"><span class="g">IV</span><h3>Jedna rada</h3><p>Věta, kterou si můžeš napsat na lísteček a nosit v peněžence.</p></div>
       </div>
-    </div>
+    </section>
 
-    <div class="chartbox">
-      <p class="eyebrow">Ukázka · rytmy člověka narozeného 14. 3. 1988</p>
-      <div class="chartwrap" id="sampleChart"></div>
-      <div class="legend">
-        <span><b style="background:#d0848c"></b>Tělo · 23 dní</span>
-        <span><b style="background:#79ada2"></b>Srdce · 28 dní</span>
-        <span><b style="background:#c9a46a"></b>Mysl · 33 dní</span>
+    <section class="how">
+      <h2>Jak to chodí</h2>
+      <div class="steps">
+        <div class="step"><span class="n">1</span><div><h3>Odpovíš na pár otázek</h3><p>Jméno, datum narození, oblast a hlavně tvoje vlastní otázka. Zabere to dvě minuty.</p></div></div>
+        <div class="step"><span class="n">2</span><div><h3>Vytáhneš tři karty</h3><p>Rub je stejný, nevidíš, co bereš. Rozložíme je hned a první výklad uvidíš zdarma.</p></div></div>
+        <div class="step"><span class="n">3</span><div><h3>Zaplatíš QR kódem</h3><p>Mobilní bankovnictví, jedno cvaknutí. Žádná registrace, žádná karta, žádné předplatné.</p></div></div>
+        <div class="step"><span class="n">4</span><div><h3>Přijde ti výklad</h3><p>Jakmile platba dorazí, Jolanda výklad dopíše a pošle ho na tvůj e-mail — nejpozději do 24 hodin.</p></div></div>
       </div>
-    </div>
+      <div class="pricecard">
+        <p class="eyebrow">Cena výkladu</p>
+        <p class="amt"><span id="priceHero"></span> Kč</p>
+        <p class="small muted">Jednorázově za jeden výklad. Nic se neopakuje, nikam se nepřihlašuješ.</p>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2>Než se zeptáš</h2>
+      <details><summary>Jak se mám ptát?</summary><p>Nejlépe se vykládá na otázky „co, jak a proč“. Místo „vrátí se ke mně?“ zkus „co mi brání jít dál?“. Karty neumí říct ano/ne, ale umí ukázat, co je pod tím.</p></details>
+      <details><summary>Kdy výklad dorazí?</summary><p>Do 24 hodin od připsání platby, obvykle dřív. Přijde z adresy věštírny, tak se koukni i do hromadné pošty.</p></details>
+      <details><summary>Co když platba nedorazí?</summary><p>Variabilní symbol, který dostaneš, je tvůj klíč. Když se něco pokazí, napiš ho do e-mailu a Jolanda platbu dohledá.</p></details>
+      <details><summary>Co děláte s mými údaji?</summary><p>Jméno, datum narození, otázku a e-mail použijeme jen k sepsání a odeslání tvého výkladu. Nikomu je nepředáváme a na požádání je smažeme.</p></details>
+    </section>
 
     <div class="cta2">
-      <p class="whisper" style="max-width:34ch">Tvé hodiny tikají, i když je neposloucháš.</p>
-      <button class="btn" id="start2">Zjistit, co ukazují</button>
+      <p class="eyebrow">Karty čekají</p>
+      <button class="btn" id="start2">Položit otázku</button>
     </div>
   </section>
 
@@ -276,56 +304,53 @@
       <p class="eyebrow" id="rDate"></p>
       <h2 id="rTitle"></h2>
     </div>
-    <div class="today" id="rToday"></div>
-    <div class="chartbox">
-      <p class="eyebrow">Tvých příštích třicet dní</p>
-      <div class="chartwrap" id="rChart"></div>
-      <div class="legend">
-        <span><b style="background:#d0848c"></b>Tělo</span>
-        <span><b style="background:#79ada2"></b>Srdce</span>
-        <span><b style="background:#c9a46a"></b>Mysl</span>
-        <span><b style="background:#ece2cc;height:8px;width:2px"></b>Kritický den</span>
-      </div>
-    </div>
+    <p class="qbox" id="rQuestion"></p>
+
+    <div class="spread" id="rSpread"></div>
+
     <div class="text" id="rOpen"></div>
-    <div class="advice"><p class="eyebrow">Rada do života na tento měsíc</p><p id="rAdvice"></p></div>
+
+    <div class="advice"><p class="eyebrow">Rada, která platí hned dnes</p><p id="rAdvice"></p></div>
+
     <div class="sealed">
       <div class="blur" id="rSealed" aria-hidden="true"></div>
       <div class="seal">
-        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34" fill="#7a2f3a"/><circle cx="40" cy="40" r="26" fill="none" stroke="#c9a46a" stroke-width="1"/><path d="M22 40 C 30 26, 36 26, 40 40 S 50 54, 58 40" fill="none" stroke="#ece2cc" stroke-width="1.6"/></svg>
-        <p>Zbytek výkladu je zapečetěn. Otevře se v dopise, který ti přijde e-mailem.</p>
+        <svg viewBox="0 0 80 80" fill="none" stroke="#d9b35c" stroke-width="1.2" aria-hidden="true">
+          <circle cx="40" cy="40" r="30"/><circle cx="40" cy="40" r="22" stroke-dasharray="3 5"/>
+          <path d="M40 22 L52 46 H28 Z"/><circle cx="40" cy="40" r="5"/>
+        </svg>
+        <p>Zbytek výkladu je zapečetěný. Jolanda ti ho dopíše a pošle e-mailem.</p>
       </div>
     </div>
 
     <div class="pay" id="pay">
-      <div class="qr" id="qr" role="img" aria-label="QR kód pro nastavení trvalého příkazu"></div>
+      <div class="qr" id="qr" role="img" aria-label="QR kód pro platbu výkladu"></div>
       <div class="paycol">
         <div>
           <h3>Zlom pečeť</h3>
-          <p class="price"><span id="priceTxt"></span> Kč měsíčně · trvalý příkaz</p>
+          <p class="price"><span id="priceTxt"></span> Kč jednorázově · QR platba</p>
         </div>
-        <p class="small muted">Naskenuj kód v aplikaci své banky. Pokud banka trvalý příkaz sama nenastaví, zadej ho ručně podle údajů níže. Variabilní symbol je jen tvůj, podle něj tě poznáme.</p>
+        <p class="small muted">Naskenuj kód v mobilním bankovnictví, nebo zadej údaje ručně. Variabilní symbol nech, prosím, beze změny — podle něj tvůj výklad poznáme.</p>
         <dl>
           <dt>Účet</dt><dd id="pAcc"></dd>
           <dt>Částka</dt><dd id="pAm"></dd>
           <dt>VS</dt><dd id="pVs"></dd>
-          <dt>Četnost</dt><dd>měsíčně, od <span id="pFrom"></span></dd>
+          <dt>Zpráva</dt><dd id="pMsg"></dd>
         </dl>
-        <p class="testnote">Testovací verze: účet je ukázkový ze standardu QR Platby. Nic neplať.</p>
-        <button class="btn" id="paid">Platbu jsem nastavil/a</button>
+        <button class="btn" id="paid">Zaplaceno, čekám na výklad</button>
       </div>
     </div>
   </section>
 
   <!-- HOTOVO -->
   <section id="done" class="done" hidden>
-    <svg class="sigil" viewBox="0 0 100 100" aria-hidden="true" style="width:80px;height:80px"><circle cx="50" cy="50" r="46" fill="none" stroke="#c9a46a" stroke-width=".8"/><path d="M30 52 L45 66 L72 36" fill="none" stroke="#c9a46a" stroke-width="2"/></svg>
-    <h2>Dopis je na cestě</h2>
-    <p id="doneTxt" style="max-width:36ch"></p>
-    <p class="small muted">Jakmile se platba připíše, první kondiciogram dorazí na <span id="doneMail"></span>. Další vždy prvního dne v měsíci.</p>
+    <p class="eyebrow">Pečeť zlomena</p>
+    <h2>Jolanda už vykládá</h2>
+    <p id="doneTxt" style="max-width:38ch"></p>
+    <p class="small muted">Jakmile se platba připíše, výklad dorazí na <span id="doneMail"></span> — nejpozději do 24 hodin.</p>
   </section>
 
-  <footer>Kondiciogram je určen pro zábavu a inspiraci, nenahrazuje odbornou radu.<br>Údaje používáme jen k odeslání tvých dopisů. Odhlásit se můžeš v každém z nich.</footer>
+  <footer>Věštírna u Jolandy je určena pro zábavu a inspiraci, nenahrazuje odbornou radu.<br>Údaje používáme jen k sepsání a odeslání tvého výkladu.</footer>
 </main>
 
 <script>
@@ -333,111 +358,261 @@
 const CONFIG = {
   iban: "CZ6508000000192000145399",   // ukázkový účet ze standardu QR Platby – nahraďte svým
   accountLabel: "19-2000145399/0800", // totéž v tuzemském tvaru pro ruční zadání
-  price: 99,
-  message: "KONDICIOGRAM",
-  endpoint: ""                        // URL backendu, který uloží předplatitele (zatím prázdné)
+  price: 149,                         // cena jednoho výkladu v Kč
+  message: "VESTBA",                  // začátek zprávy pro příjemce
+  endpoint: ""                        // URL nasazeného Google Apps Scriptu (viz apps-script/Kod.gs)
 };
 
-const PERIODS = [
-  {key:"body",  name:"Tělo",  len:23, color:"#d0848c"},
-  {key:"heart", name:"Srdce", len:28, color:"#79ada2"},
-  {key:"mind",  name:"Mysl",  len:33, color:"#c9a46a"}
-];
-const DAY = 86400000;
 const $ = id => document.getElementById(id);
 const pad = n => String(n).padStart(2,"0");
-const midnight = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
-const daysBetween = (a,b) => Math.round((midnight(b)-midnight(a))/DAY);
-const val = (birth, day, len) => Math.sin(2*Math.PI*daysBetween(birth,day)/len);
+const DAY = 86400000;
 
-/* ===== Graf ===== */
-function chart(birth, start, days=30){
-  const W=640,H=230,L=34,R=12,T=14,B=30, w=W-L-R, h=H-T-B;
-  const x = i => L + i*(w/(days-1));
-  const y = v => T + (1-v)/2*h;
-  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Průběh biorytmů na ${days} dní">`;
-  [1,0.5,0,-0.5,-1].forEach(v=>{
-    s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${v===0?'rgba(236,226,204,.35)':'rgba(236,226,204,.08)'}" stroke-width="1"/>`;
-  });
-  s += `<text x="${L-8}" y="${y(1)+4}" fill="#a99bb0" font-family="DM Mono,monospace" font-size="11" text-anchor="end">+</text>`;
-  s += `<text x="${L-8}" y="${y(-1)+4}" fill="#a99bb0" font-family="DM Mono,monospace" font-size="11" text-anchor="end">−</text>`;
-  for(let i=0;i<days;i+=5){
-    const d=new Date(start.getTime()+i*DAY);
-    s += `<text x="${x(i)}" y="${H-8}" fill="#a99bb0" font-family="DM Mono,monospace" font-size="11" text-anchor="middle">${d.getDate()}. ${d.getMonth()+1}.</text>`;
+/* ===== Balíček ===== */
+const DECK = [
+  {id:"klic",   sym:"✦", nm:"Klíč",     up:"něco se otevírá",  txt:"Klíč mluví o řešení, které už máš v ruce, jen jsi ho zatím nepoužil/a. Dveře nejsou zamčené — jen zavřené."},
+  {id:"mesic",  sym:"☾", nm:"Měsíc",    up:"cit a noc",        txt:"Měsíc ukazuje na to, co cítíš a nahlas neříkáš. Tvoje tušení je v této věci přesnější než tvoje argumenty."},
+  {id:"slunce", sym:"☀︎", nm:"Slunce",  up:"jasno",            txt:"Slunce přináší jasno a úlevu. Věc, která se dlouho vlekla, dostane v nejbližších týdnech tvar."},
+  {id:"hvezda", sym:"★", nm:"Hvězda",   up:"naděje a směr",    txt:"Hvězda je příslib, ne záruka. Ukazuje směr, kterým se vyplatí jít, i když je cesta delší, než bys chtěl/a."},
+  {id:"srdce",  sym:"❦", nm:"Srdce",    up:"náklonnost",       txt:"Srdce mluví o vztahu, který tě zaměstnává víc, než přiznáváš. Odpověď na něj je v upřímnosti, ne v taktice."},
+  {id:"dum",    sym:"⌂", nm:"Dům",      up:"zázemí",           txt:"Dům připomíná kořeny a bezpečí. Než něco velkého změníš, ujisti se, že máš kam se vrátit."},
+  {id:"dopis",  sym:"✉︎", nm:"Dopis",   up:"zpráva",           txt:"Dopis ohlašuje zprávu nebo rozhovor, který věci pohne. Přijde spíš od člověka, na kterého nemyslíš."},
+  {id:"kotva",  sym:"⚓︎", nm:"Kotva",   up:"vytrvalost",       txt:"Kotva žádá trpělivost. Co teď vypadá jako stání na místě, je ve skutečnosti držení kurzu."},
+  {id:"kosa",   sym:"✂︎", nm:"Kosa",    up:"ostrý řez",        txt:"Kosa říká, že něco skončí — a že je lepší, když to ukončíš ty, ne okolnosti. Řez bolí krátce, vlečení dlouho."},
+  {id:"cesta",  sym:"⚑", nm:"Cesta",    up:"volba",            txt:"Cesta klade rozcestí. Obě varianty jsou schůdné; horší je stát na křižovatce a čekat, až se rozhodne samo."},
+  {id:"kniha",  sym:"❧", nm:"Kniha",    up:"tajemství",        txt:"Kniha ukazuje, že něco podstatného ještě nevíš. Než uzavřeš názor, dozvíš se novou informaci."},
+  {id:"mraky",  sym:"☁", nm:"Mraky",    up:"nejasnost",        txt:"Mraky mluví o zmatku, který se rozplyne rychleji, než čekáš. Nerozhoduj se v mlze, počkej na vítr."},
+  {id:"kvet",   sym:"❀", nm:"Květ",     up:"radost",           txt:"Květ přináší drobnou radost a přízeň okolí. Přijmi ji bez toho, abys hledal/a háček."},
+  {id:"had",    sym:"☤", nm:"Had",      up:"svlékání kůže",    txt:"Had znamená proměnu a taky opatrnost na oklikách. Ne každý, kdo mluví vlídně, ti přeje."},
+  {id:"vez",    sym:"♜", nm:"Věž",      up:"odstup",           txt:"Věž radí povystoupit nad věc. Z výšky uvidíš, že problém má jinou velikost, než jsi mu přisoudil/a."},
+  {id:"koruna", sym:"♛", nm:"Koruna",   up:"uznání",           txt:"Koruna ohlašuje uznání a úspěch tam, kde jsi dlouho odváděl/a práci potichu. Nech se ocenit."},
+  {id:"presyp", sym:"⌛", nm:"Přesýpačky", up:"čas",            txt:"Přesýpací hodiny mluví o načasování. Věc není špatná, jen brzká. Dej jí ještě jeden cyklus."},
+  {id:"ctyrlist",sym:"☘︎", nm:"Čtyřlístek", up:"štěstí",        txt:"Čtyřlístek je krátké okno štěstí. Nečekej na ideální chvíli — ta právě běží."},
+  {id:"kriz",   sym:"✚", nm:"Kříž",     up:"zátěž",            txt:"Kříž pojmenovává tíhu, kterou neseš za druhé. Zeptej se, kolik z ní je opravdu tvoje."},
+  {id:"prsten", sym:"◎", nm:"Prsten",   up:"závazek",          txt:"Prsten mluví o dohodě nebo slibu. Čti ji celou, i to malé písmo na konci."}
+];
+const POS = ["Co bylo", "Kde stojíš", "Kam to míří"];
+
+/* ===== Tematické otázky ===== */
+/* Každá odpověď nese větu, která se propisuje do výkladu. */
+const TOPICS = {
+  love: {
+    open:"Ptáš se na vztahy, a karty ve vztazích nikdy neodpovídají ano nebo ne. Ukazují, kdo v té věci co drží — a ty pak poznáš, co je tvoje a co cizí.",
+    qs:[
+      {id:"t1", q:"O koho jde?", opts:[
+        ["partner","Partner/ka, se kterým/ou jsem","přítomnost","Ptáš se na vztah, ve kterém jsi — a to je dobrá zpráva: co je živé, to se dá spravit."],
+        ["ex","Někdo, kdo už odešel","minulost","Ptáš se na někoho, kdo odešel. Karty v takové otázce skoro vždy mluví spíš o tobě než o něm."],
+        ["new","Někdo nový","začátek","Ptáš se na někoho nového. Začátky bývají v kartách nejasné schválně — ještě se rozhoduje."],
+        ["oneway","Je to zatím jednostranné","ticho","Ptáš se na city, které nemají odpověď. Karty tu ukazují hlavně tvoji vlastní energii."],
+        ["nobody","Nikdo konkrétní, jde o mě","hledání","Ptáš se, proč to zatím nepřichází. To je otázka o tobě, ne o druhých."]]},
+      {id:"t2", q:"Co v tom nejvíc bolí?", opts:[
+        ["silence","Mlčení a nejistota","dusno","Nejvíc tě tíží nevyřčené. Ticho ve vztahu nebývá klid, bývá odklad."],
+        ["distance","Vzdálenost a chlad","odstup","Cítíš odstup. Karty ukazují, že se nevytratil naráz — narůstal po kapkách."],
+        ["fights","Opakované hádky","kruh","Točíte se v kruhu. Opakovaný spor skoro nikdy není o tom, o čem se hádáte."],
+        ["mydoubt","Moje vlastní váhání","zrcadlo","Hlavní nejistota je na tvé straně. To je nepříjemné zjištění, ale dobrá výchozí pozice."],
+        ["third","Někdo třetí","stín","Do věci vstupuje třetí člověk. Karty radí nedělat závěry dřív, než budeš mít jistotu."]]},
+      {id:"t3", q:"Co by pro tebe byl dobrý konec?", opts:[
+        ["stay","Zůstat a spravit to","oprava","Chceš to spravit. Pak potřebuješ jeden upřímný rozhovor, ne deset opatrných."],
+        ["leave","Rozejít se v klidu","čistý řez","Chceš odejít v dobrém. To jde, ale jen když to řekneš dřív, než se nasbírá hořkost."],
+        ["clarity","Hlavně se v tom vyznat","jasno","Nechceš rozhodnout, chceš vidět. To je přesně to, co karty umí nejlíp."],
+        ["return","Ať se ozve","čekání","Čekáš na krok druhého. Karty na to odpovídají nerady — ale o tvém čekání řeknou hodně."]]}
+    ]
+  },
+  work: {
+    open:"Ptáš se na práci a peníze. To je oblast, kde karty mluví nejpraktičtěji: ukazují načasování a to, jestli táhneš správným směrem, nebo jen silněji.",
+    qs:[
+      {id:"t1", q:"O co konkrétně jde?", opts:[
+        ["change","Změna práce","odchod","Zvažuješ změnu místa. Karty se u takové otázky ptají nejdřív: utíkáš od, nebo jdeš k?"],
+        ["own","Vlastní projekt nebo podnikání","start","Táhne tě něco vlastního. To je nejtěžší i nejvděčnější varianta, jakou karty znají."],
+        ["people","Vztahy na pracovišti","kruh","Jde o lidi kolem tebe. Tam se výklad vždycky točí kolem toho, co si necháváš líbit."],
+        ["money","Peníze a jistota","váha","Jde o peníze. Karty je neumí spočítat, ale poznají, jestli je za tvým strachem čísla, nebo zvyk."],
+        ["growth","Povýšení a uznání","koruna","Chceš posun nahoru. Otázka není jestli, ale jestli tě už někdo vidí."]]},
+      {id:"t2", q:"Co tě drží zpátky?", opts:[
+        ["money","Peníze a závazky","tíha","Drží tě závazky. Ty se nedají odmyslet, dají se ale rozložit na menší kroky."],
+        ["fear","Strach, že to nevyjde","brzda","Drží tě strach z neúspěchu. Karty na něj mají jedinou odpověď: zmenši první krok."],
+        ["others","Ohledy na druhé","provaz","Bereš ohled na ostatní. Zeptej se, jestli o ten ohled vůbec někdo stojí."],
+        ["unclear","Nevím, co vlastně chci","mlha","Nevíš, co chceš. Pak není problém v rozhodnutí, ale v tom, že chybí zadání."],
+        ["time","Čas a energie","únava","Nemáš kapacitu. To karty neberou jako výmluvu, ale jako fakt, se kterým se počítá."]]},
+      {id:"t3", q:"Do kdy to potřebuješ vyřešit?", opts:[
+        ["month","Do měsíce","spěch","Tlačí tě čas. V krátkém horizontu karty radí nedělat velké tahy, ale dobré přípravy."],
+        ["half","Do půl roku","tempo","Máš půl roku. To je přesně okno, ve kterém se dá připravit změna bez skoku do prázdna."],
+        ["year","Letos","klid","Termín je volný. Využij to — nejlepší rozhodnutí vznikají bez nože na krku."],
+        ["open","Nemám termín","volno","Termín nemáš. Pak si jeden stanov sám/sama, jinak se věc povleče dalším rokem."]]}
+    ]
+  },
+  health: {
+    open:"Ptáš se na síly a zdraví. Karty nediagnostikují a nenahradí lékaře — poznají ale únavu, kterou vysvětluješ okolnostmi, i tu chvíli, kdy se má zpomalit.",
+    qs:[
+      {id:"t1", q:"Čeho se to týká?", opts:[
+        ["energy","Energie a únavy","dech","Jde o energii. Karty se ptají, kam odtéká — málokdy je jí málo, častěji jí hodně mizí."],
+        ["sleep","Spánku","noc","Jde o spánek. To bývá první místo, kde se ozve všechno ostatní."],
+        ["move","Pohybu a kondice","tělo","Jde o pohyb. Tady karty bývají vlídné: začátek je snazší, než si namlouváš."],
+        ["calm","Vnitřního klidu","ticho","Jde o klid. Ten se nedá vyrobit, dá se jen uvolnit místo, kde vznikne."],
+        ["load","Dlouhodobé zátěže","tíha","Jde o dlouhodobou zátěž. Karty na ni odpovídají jediným slovem: dělení."]]},
+      {id:"t2", q:"Jak dlouho to trvá?", opts:[
+        ["weeks","Pár týdnů","čerstvé","Trvá to krátce. Většina krátkých věcí odejde sama, když se jim nechá prostor."],
+        ["months","Měsíce","zvyk","Trvá to měsíce. Z toho se stává zvyk, a zvyk se mění hůř než stav."],
+        ["years","Roky","stará věc","Trvá to roky. Tak dlouhá věc se neřeší jedním rozhodnutím, ale jedním týdnem po druhém."],
+        ["season","Sezónně, vrací se to","cyklus","Vrací se to v cyklech. Cyklus se dá předvídat — a to je půlka výhry."]]},
+      {id:"t3", q:"Co už jsi zkusil/a?", opts:[
+        ["nothing","Zatím nic","start","Zatím jsi nezkusil/a nic. To není selhání, to je čistý start."],
+        ["regime","Změnil/a jsem režim","krok","Něco už jsi změnil/a. Karty radí u toho zůstat déle, než se zdá potřeba."],
+        ["talk","Mluvil/a jsem o tom","úleva","Už jsi o tom mluvil/a. To je víc než polovina cesty, i když to tak nevypadá."],
+        ["delay","Odkládám to","odklad","Odkládáš to. Karty se v takovém případě neptají co, ale kdy."]]}
+    ]
+  },
+  choice: {
+    open:"Ptáš se na rozhodnutí. To je nejlepší otázka, jakou lze položit — karty tě nerozhodnou, ale oddělí, co k volbě patří a co je jen strach.",
+    qs:[
+      {id:"t1", q:"Mezi čím vybíráš?", opts:[
+        ["two","Dvě konkrétní varianty","rozcestí","Máš dvě varianty. Když jsou obě rozumné, rozhoduje to, která tě míň unavuje."],
+        ["stay","Zůstat, nebo odejít","práh","Stojíš na prahu. Taková otázka bývá rozhodnutá dřív, než ji vyslovíš."],
+        ["speak","Říct to, nebo mlčet","slovo","Váháš, jestli promluvit. Karty jsou v tomhle překvapivě jednoznačné."],
+        ["now","Začít hned, nebo počkat","čas","Řešíš načasování. To je dobré znamení — o tom, jestli do toho jít, už rozhodnuto máš."]]},
+      {id:"t2", q:"Jak dlouho to odkládáš?", opts:[
+        ["days","Pár dní","čerstvé","Odkládáš to krátce. Ještě to není odkládání, je to zrání."],
+        ["weeks","Týdny","tíže","Odkládáš to týdny. V té fázi už samotné čekání stojí víc energie než rozhodnutí."],
+        ["months","Měsíce","zvyk","Odkládáš to měsíce. Odklad se stal součástí řešení, a to je ta nejdražší varianta."],
+        ["years","Roky","stín","Odkládáš to roky. Pak nejde o rozhodnutí, ale o to, čeho by ses tím vzdal/a."]]},
+      {id:"t3", q:"Co ti brání?", opts:[
+        ["reaction","Reakce druhých","ohled","Bojíš se reakcí. Většina jich bude mírnější, než si je maluješ."],
+        ["info","Nedostatek informací","mlha","Chybí ti informace. Karty říkají, že jedna podstatná ještě dorazí."],
+        ["money","Peníze","váha","Brzdí tě peníze. Spočítej nejhorší variantu — bývá menší než strach z ní."],
+        ["doubt","Vlastní pochyby","zrcadlo","Brzdí tě pochyby o sobě. To je to jediné, co ti nikdo zvenčí nevyřeší."]]}
+    ]
+  },
+  family: {
+    open:"Ptáš se na rodinu a blízké. Tam bývají karty nejpřísnější: ukazují staré vzorce, které se opakují, dokud je někdo nepojmenuje.",
+    qs:[
+      {id:"t1", q:"Koho se to týká?", opts:[
+        ["parents","Rodičů","kořeny","Jde o rodiče. Tam se skoro vždy vykládá i kus tvého vlastního dětství."],
+        ["kids","Dětí","větve","Jde o děti. Karty u téhle otázky připomínají, že starost není totéž co pomoc."],
+        ["siblings","Sourozenců","řada","Jde o sourozence. Staré role z dětství drží déle, než by kdo čekal."],
+        ["inlaws","Partnerovy rodiny","hranice","Jde o přiženěnou rodinu. Tam je odpovědí skoro vždy jasná hranice."],
+        ["wider","Širšího příbuzenstva","kruh","Jde o širší rodinu. Čím dál od středu, tím menší váhu tomu dej."]]},
+      {id:"t2", q:"Co se děje?", opts:[
+        ["silence","Dlouhé mlčení","ticho","Mlčíte spolu. Kdo se ozve první, nic neprohrává — obvykle naopak."],
+        ["conflict","Opakovaný spor","kruh","Spor se opakuje. Opakování znamená, že se řeší následek, ne příčina."],
+        ["worry","Starost o někoho","tíha","Máš o někoho strach. Rozděl si, co ovlivnit můžeš a co ne, a druhé polož."],
+        ["money","Dělení povinností nebo majetku","váha","Řeší se majetek nebo povinnosti. Domluva na papíře ušetří roky vztahů."],
+        ["care","Péče o někoho blízkého","kříž","Pečuješ. Karta Kříže se v takovém výkladu objevuje často a vždy říká totéž: požádej o pomoc."]]},
+      {id:"t3", q:"Co od toho chceš?", opts:[
+        ["peace","Usmíření","most","Chceš se usmířit. Pak začni něčím malým, ne velkým vysvětlováním."],
+        ["border","Nastavit hranici","práh","Chceš hranici. Ta se nestaví ve vzteku, ale v klidu a jednou větou."],
+        ["understand","Porozumět tomu","světlo","Chceš pochopit. To je nejtišší a nejúčinnější cíl ze všech."],
+        ["distance","Klid a odstup","odstup","Chceš odstup. Odstup není konec vztahu, je to podmínka, aby vydržel."]]}
+    ]
+  },
+  self: {
+    open:"Ptáš se sám/sama na sebe. Taková otázka se vykládá nejtíž a odpovídá se na ni nejdéle, protože odpověď se nedá nikam odložit.",
+    qs:[
+      {id:"t1", q:"Co tě nejvíc tíží?", opts:[
+        ["direction","Nevím, kam směřuju","mlha","Chybí ti směr. Karty na to odpovídají malým krokem, ne velkým plánem."],
+        ["joy","Ztratil/a jsem chuť","ticho","Vytratila se chuť. Většinou se nevrací odpočinkem, ale jednou drobnou věcí navíc."],
+        ["compare","Porovnávám se s druhými","zrcadlo","Porovnáváš se. To je nejrychlejší způsob, jak přijít o vlastní tempo."],
+        ["old","Stará křivda","stín","Neseš starou křivdu. Ta se nepromíjí kvůli druhému, ale kvůli sobě."],
+        ["lonely","Samota","noc","Je ti samotno. Karty tu radí jedno: ozvi se ty, nečekej."]]},
+      {id:"t2", q:"Jak jsi na tom s energií?", opts:[
+        ["full","Mám jí dost","síla","Energii máš. Pak je otázka jen, kam ji nasměruješ."],
+        ["waves","Kolísá","vlna","Energie kolísá. Plánuj podle vln, ne proti nim."],
+        ["empty","Došla mi","prázdno","Došla ti. V takovém stavu se nedělají velká rozhodnutí, jen malá a laskavá."],
+        ["unknown","Nevím","mlha","Nevíš. To samo o sobě bývá odpověď — už delší dobu se sám/sama neposloucháš."]]},
+      {id:"t3", q:"Co bys změnil/a nejdřív?", opts:[
+        ["time","Jak trávím čas","den","Změnil/a bys svůj čas. Začni jednou hodinou týdně, která patří jen tobě."],
+        ["people","S kým ho trávím","kruh","Změnil/a bys lidi kolem sebe. Nemusíš nikoho škrtat, stačí přidat."],
+        ["voice","Jak o sobě mluvím","hlas","Změnil/a bys, jak o sobě mluvíš. Zkus týden mluvit o sobě jako o kamarádovi."],
+        ["place","Kde žiju","dům","Změnil/a bys místo. Než se zvedneš, ověř, jestli utíkáš od místa, nebo od pocitu."]]}
+    ]
   }
-  PERIODS.forEach(p=>{
-    let d="";
-    for(let i=0;i<=(days-1)*4;i++){
-      const t=i/4, day=new Date(start.getTime()+t*DAY);
-      const v=Math.sin(2*Math.PI*(daysBetween(birth,start)+t)/p.len);
-      d += (i?"L":"M")+x(t).toFixed(1)+" "+y(v).toFixed(1)+" ";
-    }
-    s += `<path d="${d}" fill="none" stroke="${p.color}" stroke-width="2" stroke-linecap="round"/>`;
-    // kritické dny = průchod nulou
-    for(let i=0;i<days-1;i++){
-      const a=val(birth,new Date(start.getTime()+i*DAY),p.len), b=val(birth,new Date(start.getTime()+(i+1)*DAY),p.len);
-      if(a===0 || (a>0)!==(b>0)){ const k = Math.abs(a)<Math.abs(b)?i:i+1; s += `<circle cx="${x(k)}" cy="${y(0)}" r="3.2" fill="#ece2cc" stroke="${p.color}" stroke-width="1.5"/>`; }
-    }
-  });
-  s += `<line x1="${x(0)}" x2="${x(0)}" y1="${T}" y2="${T+h}" stroke="#ece2cc" stroke-width="1" stroke-dasharray="2 3"/>`;
-  s += `<text x="${x(0)+6}" y="${T+10}" fill="#ece2cc" font-family="DM Mono,monospace" font-size="11">dnes</text>`;
-  return s+"</svg>";
-}
+};
 
 /* ===== Otázky ===== */
-const QUESTIONS = [
-  {id:"name", type:"text", q:"Jak ti říkají ti, kdo tě znají nejlépe?", hint:"Stačí křestní jméno. Tím budou začínat tvé dopisy.", ph:"Tvé jméno"},
-  {id:"birth", type:"date", q:"Kdy ses poprvé nadechl/a?", hint:"Den narození roztáčí všechny tři rytmy."},
-  {id:"focus", type:"choice", q:"Co tě v posledních dnech nenechá usnout?", opts:[
-    ["love","Láska a blízcí","srdce"],["work","Práce a peníze","ruce"],["body","Tělo a energie","dech"],
-    ["choice","Rozhodnutí, které odkládám","práh"],["self","Já sám/sama","zrcadlo"]]},
-  {id:"element", type:"choice", q:"Který živel tě volá?", opts:[
-    ["fire","Oheň","odvaha"],["water","Voda","cit"],["air","Vzduch","myšlenka"],["earth","Země","vytrvalost"]]},
-  {id:"hour", type:"choice", q:"Kdy jsi nejvíc sebou?", opts:[
-    ["dawn","Za svítání","začátky"],["noon","V poledne","plná síla"],["dusk","Za soumraku","přechody"],["night","O půlnoci","tajemství"]]},
-  {id:"symbol", type:"choice", q:"Sáhni po jednom předmětu. Nepřemýšlej.", opts:[
-    ["key","Klíč","otevírá"],["eye","Oko","vidí"],["moon","Měsíc","proměňuje"],["snake","Had","svléká kůži"]]},
-  {id:"email", type:"email", q:"Kam ti máme posílat dopisy?", hint:"Jednou měsíčně, vždy prvního dne. Nic jiného.", ph:"jmeno@email.cz"}
+const BASE1 = [
+  {id:"name", type:"text", q:"Jak ti mám říkat?", hint:"Stačí křestní jméno. Tím bude výklad začínat.", ph:"Tvé jméno"},
+  {id:"birth", type:"date", q:"Kdy ses narodil/a?", hint:"Datum narození určuje, ze které vrstvy balíčku se vykládá."},
+  {id:"focus", type:"choice", q:"Čeho se tvá otázka týká?", opts:[
+    ["love","Lásky a vztahů","srdce"],["work","Práce a peněz","ruce"],["health","Zdraví a sil","dech"],
+    ["choice","Rozhodnutí, které odkládám","práh"],["family","Rodiny a blízkých","kruh"],["self","Mě samotné/ho","zrcadlo"]]}
 ];
-const answers = {};
-let step = 0;
+const BASE2 = [
+  {id:"question", type:"longtext", q:"Zeptej se Jolandy vlastními slovy", hint:"Čím konkrétnější otázka, tím přesnější výklad. Klidně přidej i to, co k ní patří.", ph:"Například: Mám zůstat v současné práci, nebo se naplno vrhnout na vlastní projekt?"},
+  {id:"cards", type:"cards", q:"Vytáhni tři karty", hint:"Nemysli na to, ber ty, ke kterým tě to táhne."},
+  {id:"email", type:"email", q:"Kam mám výklad poslat?", hint:"Jeden e-mail, jeden výklad. Nic víc ti chodit nebude.", ph:"jmeno@email.cz"}
+];
+const TOTAL = BASE1.length + 3 + BASE2.length;
+const answers = {cards:[]};
+let step = 0, fan = [];
+
+function topicQs(){
+  const t = TOPICS[answers.focus];
+  return t ? t.qs.map(q=>({...q, type:"choice", hint:"Vyber, co sedí nejvíc. Podle toho Jolanda výklad zúží."})) : [];
+}
+function flow(){ return BASE1.concat(topicQs(), BASE2); }
 
 function renderProgress(){
-  $("progress").innerHTML = QUESTIONS.map((_,i)=>`<i class="${i<=step?'on':''}"></i>`).join("");
+  const f = flow();
+  $("progress").innerHTML = Array.from({length:TOTAL},(_,i)=>`<i class="${i<=step && i<f.length?'on':''}"></i>`).join("");
 }
+function shuffled(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
 function renderQ(){
-  const Q = QUESTIONS[step];
+  const F = flow(), Q = F[step];
   $("err").textContent = "";
   let body = "";
   if(Q.type==="choice"){
-    body = `<div class="opts" role="group" aria-label="${Q.q}">` + Q.opts.map(([v,l,s])=>
-      `<button class="opt" id="opt-${Q.id}-${v}" data-v="${v}" aria-pressed="${answers[Q.id]===v}">${l}<small>${s}</small></button>`).join("") + `</div>`;
+    body = `<div class="opts" role="group" aria-label="${Q.q}">` + Q.opts.map(o=>
+      `<button class="opt" data-v="${o[0]}" aria-pressed="${answers[Q.id]===o[0]}">${o[1]}<small>${o[2]}</small></button>`).join("") + `</div>`;
+  } else if(Q.type==="cards"){
+    if(!fan.length) fan = shuffled(DECK).slice(0,12);
+    body = `<div class="deck" role="group" aria-label="Balíček karet">` + fan.map((c,i)=>
+      `<button class="card" data-i="${i}" aria-pressed="${answers.cards.includes(i)}" aria-label="Karta ${i+1}"><span class="back">✧</span></button>`).join("") + `</div>
+      <p class="counter" id="cardCount"></p>`;
+  } else if(Q.type==="longtext"){
+    body = `<textarea class="field" id="f-${Q.id}" aria-label="${Q.q}" maxlength="400" placeholder="${Q.ph}">${answers[Q.id]||""}</textarea><p class="counter" id="chars"></p>`;
   } else {
     const t = Q.type==="date"?"date":Q.type==="email"?"email":"text";
     const extra = Q.type==="date" ? ` max="${new Date().toISOString().slice(0,10)}" min="1920-01-01"` : "";
     body = `<input class="field" id="f-${Q.id}" aria-label="${Q.q}" type="${t}" placeholder="${Q.ph||""}" value="${answers[Q.id]||""}" autocomplete="${Q.type==='email'?'email':Q.type==='text'?'given-name':'bday'}"${extra}>`;
-    if(Q.type==="email") body += `<label class="consent"><input type="checkbox" id="f-consent" ${answers.consent?"checked":""}><span>Souhlasím se zasíláním kondiciogramu na tento e-mail a se zpracováním údajů, které jsem vyplnil/a, pouze pro tento účel.</span></label>`;
+    if(Q.type==="email") body += `<label class="consent"><input type="checkbox" id="f-consent" ${answers.consent?"checked":""}><span>Souhlasím s tím, aby věštírna použila mé údaje k sepsání a odeslání výkladu na tento e-mail.</span></label>`;
   }
-  $("qslot").innerHTML = `<div class="q"><div><p class="eyebrow">Otázka ${step+1} ze ${QUESTIONS.length}</p></div><div><h2>${Q.q}</h2>${Q.hint?`<p class="hint">${Q.hint}</p>`:""}</div>${body}</div>`;
+  $("qslot").innerHTML = `<div class="q"><div><p class="eyebrow">Otázka ${step+1} z ${TOTAL}</p></div><div><h2>${Q.q}</h2>${Q.hint?`<p class="hint">${Q.hint}</p>`:""}</div>${body}</div>`;
   $("back").style.visibility = step===0 ? "hidden":"visible";
-  $("next").textContent = step===QUESTIONS.length-1 ? "Odhalit rytmy" : "Dál";
+  $("next").textContent = step===F.length-1 ? "Zobrazit výklad" : "Dál";
   renderProgress();
+
   if(Q.type==="choice"){
     $("qslot").querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+      if(Q.id==="focus" && answers.focus && answers.focus!==b.dataset.v){ delete answers.t1; delete answers.t2; delete answers.t3; }
       answers[Q.id]=b.dataset.v;
       $("qslot").querySelectorAll(".opt").forEach(o=>o.setAttribute("aria-pressed", o===b));
       setTimeout(next, 380);
     }));
+  } else if(Q.type==="cards"){
+    const upd = ()=>{ $("cardCount").textContent = `Vybráno ${answers.cards.length} ze 3`; };
+    upd();
+    $("qslot").querySelectorAll(".card").forEach(b=>b.addEventListener("click",()=>{
+      const i = +b.dataset.i, at = answers.cards.indexOf(i);
+      if(at>=0) answers.cards.splice(at,1);
+      else { if(answers.cards.length>=3) return; answers.cards.push(i); }
+      b.setAttribute("aria-pressed", at<0);
+      upd();
+      if(answers.cards.length===3) setTimeout(next, 520);
+    }));
+  } else if(Q.type==="longtext"){
+    const f = $("f-"+Q.id); f.focus({preventScroll:true});
+    const upd = ()=>{ $("chars").textContent = `${f.value.length} / 400`; };
+    upd(); f.addEventListener("input", upd);
   } else {
     const f = $("f-"+Q.id); f.focus({preventScroll:true});
     f.addEventListener("keydown",e=>{ if(e.key==="Enter") next(); });
   }
 }
 function collect(){
-  const Q = QUESTIONS[step];
+  const Q = flow()[step];
   if(Q.type==="choice") return answers[Q.id] ? "" : "Vyber jednu z možností.";
+  if(Q.type==="cards") return answers.cards.length===3 ? "" : "Vytáhni přesně tři karty.";
   const v = $("f-"+Q.id).value.trim();
   if(Q.type==="text"){ if(!v) return "Napiš své jméno."; answers.name=v; }
+  if(Q.type==="longtext"){ if(v.length<10) return "Napiš otázku aspoň pár slovy, ať má Jolanda z čeho vycházet."; answers.question=v; }
   if(Q.type==="date"){
     const d = new Date(v+"T00:00:00");
     if(!v || isNaN(d) || d>new Date() || d.getFullYear()<1920) return "Zadej platné datum narození.";
@@ -447,14 +622,14 @@ function collect(){
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return "Tenhle e-mail nevypadá platně. Zkontroluj ho.";
     answers.email=v;
     answers.consent = $("f-consent").checked;
-    if(!answers.consent) return "Bez souhlasu ti dopisy poslat nemůžeme.";
+    if(!answers.consent) return "Bez souhlasu ti výklad poslat nemůžeme.";
   }
   return "";
 }
 function next(){
   const e = collect();
   if(e){ $("err").textContent = e; return; }
-  if(step < QUESTIONS.length-1){ step++; renderQ(); }
+  if(step < flow().length-1){ step++; renderQ(); }
   else showResult();
 }
 $("next").addEventListener("click", next);
@@ -463,215 +638,200 @@ function begin(){ $("intro").hidden = true; $("quiz").hidden = false; renderQ();
 $("start").addEventListener("click", begin);
 $("start2").addEventListener("click", begin);
 
-/* ===== Generátor výkladu (stejná logika poslouží i pro e-mail) ===== */
-const TXT = {
-  element:{
-    fire:"Oheň v tobě nesnáší čekání. Tam, kde ostatní váhají, ty už stojíš na druhém břehu.",
-    water:"Voda v tobě cítí proudy, které druzí přehlížejí. Tvá síla není v nárazu, ale ve vytrvalém tečení.",
-    air:"Vzduch v tobě spojuje nesouvisející věci. Odpovědi k tobě přicházejí, když se na chvíli přestaneš ptát.",
-    earth:"Země v tobě drží tvar, i když se všechno kolem hýbe. Co zasadíš teď, poneseš ještě dlouho."
-  },
-  hour:{
-    dawn:"Tvé nejlepší hodiny patří svítání. Důležité věci začínej dřív, než se svět probudí.",
-    noon:"Tvá síla vrcholí v poledne. Nejtěžší rozhovory nechávej na dobu, kdy stojí slunce nejvýš.",
-    dusk:"Soumrak je tvůj práh. V době mezi dnem a nocí se ti ukazuje to, co jinak zůstává skryté.",
-    night:"Půlnoc ti patří. Co vymyslíš po setmění, ověř si ráno, ale nezahazuj to."
-  },
-  symbol:{
-    key:"Vybral/a sis klíč. Někde blízko jsou zavřené dveře, ke kterým už ho máš. Jen jsi to zatím nezkusil/a.",
-    eye:"Vybral/a sis oko. Tento měsíc uvidíš něco, co jsi dlouho odmítal/a vidět. Nedívej se jinam.",
-    moon:"Vybral/a sis měsíc. Něco v tobě dorůstá, dej tomu čas do úplňku.",
-    snake:"Vybral/a sis hada. Starou kůži už nosíš jen ze zvyku. Pusť ji."
-  },
-  focus:{
-    love:["vztahy","V blízkých vztazích sleduj hlavně křivku srdce."],
-    work:["práci","V práci a penězích rozhoduje hlavně křivka mysli."],
-    body:["tělo","Pro tělo a energii je klíčová první křivka, tělesná."],
-    choice:["rozhodnutí","U odkládaného rozhodnutí hledej den, kdy mysl i srdce stoupají zároveň."],
-    self:["sebe","Když jde o tebe samotného/samotnou, dívej se na všechny tři rytmy najednou."]
-  }
+/* ===== Výklad ===== */
+const ZN = ["Kozoroh","Vodnář","Ryby","Beran","Býk","Blíženci","Rak","Lev","Panna","Váhy","Štír","Střelec"];
+function znameni(d){
+  const m=d.getMonth()+1, day=d.getDate(), cut=[20,19,20,20,21,21,22,22,23,23,22,21];
+  return day<cut[m-1] ? ZN[m-1] : ZN[m%12];
+}
+function makeVS(){ return String(Math.floor(1e9 + Math.random()*9e9)); }
+function stripDia(s){ return s.normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/\*/g,"").toUpperCase(); }
+function esc(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+const MON = ["ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince"];
+const fmt = d => `${d.getDate()}. ${MON[d.getMonth()]}`;
+const fmtFull = d => `${d.getDate()}. ${MON[d.getMonth()]} ${d.getFullYear()}`;
+
+/* věty, které nesou vybrané tematické odpovědi */
+function topicLines(a){
+  const t = TOPICS[a.focus]; if(!t) return [];
+  return t.qs.map(q=>{ const o = q.opts.find(o=>o[0]===a[q.id]); return o ? o[3] : null; }).filter(Boolean);
+}
+function topicLabels(a){
+  const t = TOPICS[a.focus]; if(!t) return [];
+  return t.qs.map(q=>{ const o = q.opts.find(o=>o[0]===a[q.id]); return o ? `${q.q} ${o[1]}` : null; }).filter(Boolean);
+}
+const FOCUS_NAME = {love:"láska a vztahy",work:"práce a peníze",health:"zdraví a síly",choice:"odkládané rozhodnutí",family:"rodina a blízcí",self:"já sám/sama"};
+const ADVICE = {
+  love:"Řekni nahlas jednu větu, kterou v sobě nosíš už měsíc. Ať dopadne jakkoli, uleví se ti hned.",
+  work:"Než uděláš velký krok, dopiš to, co máš rozdělané. Nové dveře se líp otvírají s prázdnýma rukama.",
+  health:"Dnes běž spát o hodinu dřív. Není to málo — je to celý zítřek navíc.",
+  choice:"Napiš si obě varianty na papír a nech je do rána ležet. Ráno uvidíš, ke které se ti oči vrací.",
+  family:"Zavolej tomu, na koho myslíš, ještě tenhle týden. Nemusíš nic řešit, stačí se ozvat.",
+  self:"Buď k sobě aspoň tak laskavý/á, jak bys byl/a ke kamarádovi se stejným trápením."
 };
-function phase(birth, day, len){
-  const a=val(birth,day,len), b=val(birth,new Date(day.getTime()+DAY),len);
-  if(Math.abs(a)<0.14) return "kritický den";
-  if(a>0.7) return "vrchol";
-  if(a<-0.7) return "útlum";
-  return b>a ? "stoupá" : "klesá";
-}
-function bestDay(birth, today, keys){
-  let best=null, score=-9;
-  for(let i=1;i<30;i++){
-    const d=new Date(today.getTime()+i*DAY);
-    const s=keys.reduce((acc,k)=>acc+val(birth,d,PERIODS.find(p=>p.key===k).len),0);
-    if(s>score){score=s;best=d;}
-  }
-  return best;
-}
-function criticalDays(birth, today){
-  const out=[];
-  for(let i=0;i<30;i++){
-    const d=new Date(today.getTime()+i*DAY);
-    PERIODS.forEach(p=>{
-      const a=val(birth,d,p.len), b=val(birth,new Date(d.getTime()+DAY),p.len);
-      if((a>0)!==(b>0)) out.push({d:new Date(d.getTime()+(Math.abs(a)<Math.abs(b)?0:DAY)), p:p.name});
-    });
-  }
-  return out;
-}
-const fmt = d => `${d.getDate()}. ${d.getMonth()+1}.`;
+const CLOSE = {
+  love:"Až ti výklad dojde, polož si jednu otázku: co z toho, co čekáš od druhého, můžeš udělat sám/sama?",
+  work:"Až ti výklad dojde, polož si jednu otázku: co uděláš jako první, i kdyby se nic dalšího nezměnilo?",
+  health:"Až ti výklad dojde, polož si jednu otázku: co ti tvoje tělo říká už dlouho a ty to přeslechneš?",
+  choice:"Až ti výklad dojde, polož si jednu otázku: čeho by ses tím rozhodnutím musel/a vzdát — a je to opravdu ztráta?",
+  family:"Až ti výklad dojde, polož si jednu otázku: čí je to vlastně břemeno?",
+  self:"Až ti výklad dojde, polož si jednu otázku: komu ještě dovolíš rozhodovat o tvém dni?"
+};
 
 function buildReading(a){
+  const now = new Date();
   const birth = new Date(a.birth+"T00:00:00");
-  const today = midnight(new Date());
-  const lived = daysBetween(birth, today);
-  const now = PERIODS.map(p=>({...p, v:val(birth,today,p.len), ph:phase(birth,today,p.len)}));
-  const strongest = [...now].sort((x,y)=>y.v-x.v)[0];
-  const weakest = [...now].sort((x,y)=>x.v-y.v)[0];
-  const focusKeys = {love:["heart"],work:["mind"],body:["body"],choice:["mind","heart"],self:["body","heart","mind"]}[a.focus];
-  const best = bestDay(birth, today, focusKeys);
-  const crit = criticalDays(birth, today);
+  const cards = a.cards.map(i=>fan[i]);
+  const zn = znameni(birth);
+  const lines = topicLines(a);
+  const seed = (birth.getDate()+birth.getMonth()+cards.reduce((s,c)=>s+c.nm.length,0)) % 4;
+  const from = new Date(now.getTime() + (3+seed*5)*DAY), to = new Date(from.getTime() + 9*DAY);
 
+  // volně viditelná část
   const open = [
-    `Jsi tu ${lived.toLocaleString("cs-CZ")} dní. Za tu dobu tvé tělo oběhlo svůj kruh ${Math.floor(lived/23)}krát, srdce ${Math.floor(lived/28)}krát a mysl ${Math.floor(lived/33)}krát. Dnes je nejsilnější ${strongest.name.toLowerCase()} (${strongest.ph}) a nejtišší ${weakest.name.toLowerCase()} (${weakest.ph}).`,
-    TXT.element[a.element]
-  ];
-  const sealed = [
-    `${TXT.focus[a.focus][1]} Nejpříznivější den, kdy se věnovat tématu „${TXT.focus[a.focus][0]}", připadá na ${fmt(best)}. V ten den se tvé rytmy sčítají.`,
-    TXT.hour[a.hour],
-    TXT.symbol[a.symbol],
-    crit.length ? `Kritických dní, kdy některá křivka prochází nulou, tě čeká ${crit.length}: ${crit.slice(0,4).map(c=>fmt(c.d)+" ("+c.p.toLowerCase()+")").join(", ")}${crit.length>4?" a další":""}. V takové dny nepodepisuj nic, co nemusíš.` : ""
+    `${a.name}, karty jsem rozložila do tří poloh — co bylo, kde stojíš a kam to míří. Ptáš se jako ${zn.toLowerCase()}, a to už samo o sobě něco napovídá o tom, jak odpověď přijmeš.`,
+    TOPICS[a.focus].open,
+    lines[0] || "",
+    `${cards[0].nm} v první poloze mluví o tom, z čeho tvoje otázka vyrostla. ${cards[0].txt}`
   ].filter(Boolean);
-  return {birth, today, now, open, sealed};
+
+  // zapečetěná část (v plném znění jde jen do e-mailu)
+  const sealed = [
+    `${cards[1].nm} v druhé poloze ukazuje, kde právě teď stojíš. ${cards[1].txt}`,
+    lines[1] || "",
+    `${cards[2].nm} uzavírá rozklad a míří dopředu. ${cards[2].txt}`,
+    lines[2] || "",
+    `Když ${cards[0].nm.toLowerCase()}, ${cards[1].nm.toLowerCase()} a ${cards[2].nm.toLowerCase()} postavím vedle sebe, vyjde z nich jedna věta, kterou ti napíšu do výkladu celou.`,
+    `Období, které ti podle rozkladu přeje, spadá mezi ${fmt(from)} a ${fmt(to)}. Co chceš pohnout, pohni tehdy; předtím spíš sbírej informace.`,
+    CLOSE[a.focus]
+  ].filter(Boolean);
+
+  return {cards, now, birth, zn, open, sealed, from, to, advice: ADVICE[a.focus]};
+}
+
+/* Plné rozřešení pro e-mail (prostý text) */
+function buildFull(a, r){
+  const L = [];
+  L.push(`Milý/á ${a.name},`);
+  L.push(`karty jsem rozložila ${fmtFull(r.now)}. Ptal/a ses na to, co spadá pod ${FOCUS_NAME[a.focus]}, a tvoje otázka zněla:`);
+  L.push(`„${a.question}“`);
+  L.push(`Narodil/a ses ${fmtFull(r.birth)}, ve znamení, které se jmenuje ${r.zn}. Vykládám ti ze tří karet: ${r.cards.map((c,i)=>`${POS[i]} — ${c.nm}`).join(", ")}.`);
+  L.push("—");
+  L.push(`1) ${POS[0]}: ${r.cards[0].nm} (${r.cards[0].up})`);
+  L.push(r.cards[0].txt);
+  L.push(...r.open.slice(1,3));
+  L.push("—");
+  L.push(`2) ${POS[1]}: ${r.cards[1].nm} (${r.cards[1].up})`);
+  L.push(r.cards[1].txt);
+  L.push(r.sealed[1] || "");
+  L.push("—");
+  L.push(`3) ${POS[2]}: ${r.cards[2].nm} (${r.cards[2].up})`);
+  L.push(r.cards[2].txt);
+  L.push(r.sealed[3] || "");
+  L.push("—");
+  L.push("CO Z TOHO PLYNE");
+  L.push(`Tvoje otázka stojí na tom, co ukazuje ${r.cards[0].nm.toLowerCase()} — odtud to vyrostlo. ${r.cards[1].nm} popisuje, kde jsi teď, a ${r.cards[2].nm.toLowerCase()} říká, kam to půjde, pokud nic nezměníš. Nejde o osud: jde o setrvačnost, a tu můžeš přerušit ty.`);
+  L.push(`Období, které ti přeje, spadá mezi ${fmt(r.from)} a ${fmt(r.to)}. Co chceš pohnout, pohni tehdy; do té doby spíš sbírej informace a nic nepodepisuj ve spěchu.`);
+  L.push(`RADA NA TENTO MĚSÍC: ${r.advice}`);
+  L.push(CLOSE[a.focus]);
+  L.push(`Drž se, Jolanda`);
+  L.push(`Věštírna u Jolandy · výklad pro variabilní symbol ${a.vs}`);
+  L.push(`Výklad je určen pro zábavu a inspiraci, nenahrazuje odbornou radu. Tvoje údaje používáme jen k jeho sepsání a odeslání.`);
+  return L.filter(x=>x!==undefined).join("\n\n").replace(/\n\n—\n\n/g,"\n\n———\n\n");
 }
 
 /* ===== Výsledek a platba ===== */
-function makeVS(){ return String(Math.floor(1e9 + Math.random()*9e9)); }
-function stripDia(s){ return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\*/g,"").toUpperCase(); }
-
+let reading = null;
 function showResult(){
-  const r = buildReading(answers);
+  const r = reading = buildReading(answers);
   answers.vs = answers.vs || makeVS();
   $("quiz").hidden = true; $("result").hidden = false; window.scrollTo({top:0});
 
-  const d=r.today;
-  $("rDate").textContent = `Kondiciogram · ${d.getDate()}. ${d.getMonth()+1}. ${d.getFullYear()}`;
-  $("rTitle").textContent = `Rytmy pro ${answers.name}`;
-  $("rToday").innerHTML = r.now.map(p=>`<div><span class="l">${p.name}</span><span class="v" style="color:${p.color}">${p.v>=0?"+":"−"}${Math.round(Math.abs(p.v)*100)} %</span><span class="s">${p.ph}</span></div>`).join("");
-  $("rChart").innerHTML = chart(r.birth, r.today);
-  $("rOpen").innerHTML = r.open.map(t=>`<p>${t}</p>`).join("");
-  $("rSealed").innerHTML = r.sealed.map(t=>`<p>${t}</p>`).join("");
-  $("rAdvice").textContent = adviceFor(answers, r.now);
+  const d = r.now;
+  $("rDate").textContent = `Výklad · ${fmtFull(d)}`;
+  $("rTitle").textContent = `Karty pro ${answers.name}`;
+  $("rQuestion").textContent = `„${answers.question}“`;
+  $("rSpread").innerHTML = r.cards.map((c,i)=>
+    `<div class="laid" style="animation-delay:${i*.18}s"><span class="sym">${c.sym}</span><div><span class="pos">${POS[i]}</span><div class="nm">${c.nm}</div><span class="pos">${c.up}</span></div></div>`).join("");
+  $("rOpen").innerHTML = r.open.map(t=>`<p>${esc(t)}</p>`).join("");
+  $("rSealed").innerHTML = r.sealed.map(t=>`<p>${esc(t)}</p>`).join("");
+  $("rAdvice").textContent = r.advice;
 
-  // QR platba – trvalý příkaz (FRQ/DT)
-  const dt = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
-  const spd = `SPD*1.0*ACC:${CONFIG.iban}*AM:${CONFIG.price.toFixed(2)}*CC:CZK*X-VS:${answers.vs}*MSG:${stripDia(CONFIG.message+" "+answers.name).slice(0,60)}*FRQ:1M*DT:${dt}`;
+  const msg = stripDia(CONFIG.message+" "+answers.name).slice(0,60);
+  const spd = `SPD*1.0*ACC:${CONFIG.iban}*AM:${CONFIG.price.toFixed(2)}*CC:CZK*X-VS:${answers.vs}*MSG:${msg}`;
   answers.spd = spd;
   try{
     const q = qrcode(0,"M"); q.addData(spd); q.make();
     $("qr").innerHTML = q.createSvgTag({cellSize:4, margin:0, scalable:true});
-  }catch(e){ $("qr").textContent = "QR kód se nepodařilo vytvořit. Použij údaje vpravo."; }
+  }catch(e){ $("qr").textContent = "QR kód se nepodařilo vytvořit. Použij údaje vedle."; }
   $("priceTxt").textContent = CONFIG.price;
   $("pAcc").textContent = CONFIG.accountLabel;
   $("pAm").textContent = CONFIG.price + " Kč";
   $("pVs").textContent = answers.vs;
-  $("pFrom").textContent = fmt(d)+" "+d.getFullYear();
+  $("pMsg").textContent = msg;
 }
 
-$("paid").addEventListener("click", async ()=>{
-  const payload = {name:answers.name, birth:answers.birth, focus:answers.focus, element:answers.element,
-    hour:answers.hour, symbol:answers.symbol, email:answers.email, vs:answers.vs, created:new Date().toISOString()};
+$("paid").addEventListener("click", async (ev)=>{
+  const btn = ev.currentTarget;
+  btn.disabled = true; btn.textContent = "Odesílám objednávku…";
+  const payload = {
+    name:answers.name, email:answers.email, birth:answers.birth, znameni:reading.zn,
+    focus:answers.focus, focusLabel:FOCUS_NAME[answers.focus], topics:topicLabels(answers),
+    question:answers.question, cards:reading.cards.map((c,i)=>`${POS[i]}: ${c.nm}`),
+    vs:answers.vs, price:CONFIG.price, reading:buildFull(answers, reading),
+    created:new Date().toISOString()
+  };
+  let ok = false;
   if(CONFIG.endpoint){
-    try{ await fetch(CONFIG.endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}); }catch(e){}
-  } else { console.log("Předplatitel (backend zatím není napojen):", payload); }
+    try{
+      // text/plain = jednoduchý požadavek, Apps Script nepotřebuje preflight
+      await fetch(CONFIG.endpoint,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+      ok = true;
+    }catch(e){ ok = false; }
+  } else { console.log("Objednávka (endpoint není nastaven):", payload); ok = true; }
+
   $("result").hidden = true; $("done").hidden = false; window.scrollTo({top:0});
-  $("doneTxt").textContent = `${answers.name}, tvůj variabilní symbol je ${answers.vs}. Schovej si ho, je to tvůj klíč.`;
+  $("doneTxt").textContent = ok
+    ? `${answers.name}, tvůj variabilní symbol je ${answers.vs}. Schovej si ho — podle něj tvůj výklad poznáme.`
+    : `${answers.name}, objednávku se nepodařilo odeslat. Napiš nám prosím e-mail a uveď variabilní symbol ${answers.vs}.`;
   $("doneMail").textContent = answers.email;
 });
 
-/* ===== Rady do života ===== */
+/* ===== Šepot ===== */
 const WHISPERS = [
+  "Kdo se ptá nahlas, bývá první, kdo uslyší odpověď.",
+  "Karty neříkají, co se stane. Říkají, co už víš.",
   "Co odkládáš nejdéle, to tě stojí nejvíc sil.",
-  "Ne každý den je na rozhodnutí. Některé jsou jen na čaj.",
-  "Kdo zpomalí včas, nemusí pak brzdit.",
+  "Někdy je nejlepší tah počkat o týden déle.",
   "Odpověď často přijde, když se přestaneš ptát.",
-  "Dnes stačí udělat jednu věc pořádně.",
-  "Laskavé slovo zadarmo je nejlepší investice týdne.",
-  "Únava není slabost. Je to vzkaz.",
-  "Než něco pošleš ve vzteku, nech to přes noc uležet."
+  "Než něco pošleš ve vzteku, nech to přes noc uležet.",
+  "Ne každý, kdo mluví vlídně, ti přeje.",
+  "Jedna věc pořádně je víc než pět napůl."
 ];
-const ADVICE = {
-  love:{up:"Srdce je silné: řekni nahlas, co jinak jen myslíš. Blízcí to potřebují slyšet víc, než tušíš.",
-        down:"Srdce odpočívá: nečekej od druhých, že uhodnou, co potřebuješ. Řekni to klidně a jednoduše.",
-        crit:"Srdce je na hraně: dnes se nehádej. Co bolí dnes, bude za tři dny poloviční."},
-  work:{up:"Mysl je ostrá: pusť se do úkolu, kterého se nejvíc bojíš. Právě teď ho zvládneš nejlépe.",
-        down:"Mysl odpočívá: dodělávej, uklízej a plánuj. Na velké začátky přijde lepší čas.",
-        crit:"Mysl se láme: důležitý podpis nebo rozhodnutí o penězích odlož aspoň o dva dny."},
-  body:{up:"Tělo má sílu: začni s pohybem, který jsi slíbil/a sám/sama sobě. Dnes to půjde snáz.",
-        down:"Tělo si říká o klid: dřívější spánek teď udělá víc než káva a vůle.",
-        crit:"Tělo je citlivé: nepřeceňuj se. Procházka místo výkonu."},
-  choice:{up:"Rytmy ti přejí: rozhodnutí, které odkládáš, udělej do konce týdne. Horší už to nebude.",
-          down:"Ještě počkej: sepiš si pro a proti a nech je ležet do dne síly.",
-          crit:"Dnes nerozhoduj. Jen si zapiš, co cítíš. Zítra to bude jasnější."},
-  self:{up:"Tvé hodiny jdou s tebou: udělej si radost, kterou si pořád odpíráš.",
-        down:"Buď k sobě laskavější než k ostatním. Aspoň tento měsíc.",
-        crit:"Zastav se. Den bez výkonu není ztracený den."}
-};
-function adviceFor(a, now){
-  const k = {love:"heart",work:"mind",body:"body",choice:"mind",self:"heart"}[a.focus];
-  const p = now.find(x=>x.key===k);
-  const mood = p.ph==="kritický den" ? "crit" : (p.ph==="vrchol"||p.ph==="stoupá") ? "up" : "down";
-  return ADVICE[a.focus][mood];
-}
-try{ $("whisperTxt").textContent = WHISPERS[Math.floor(Math.random()*WHISPERS.length)]; }catch(e){}
+$("whisperTxt").textContent = WHISPERS[Math.floor(Math.random()*WHISPERS.length)];
+$("priceHero").textContent = CONFIG.price;
 
-/* ===== Astroláb: rysky podle délky cyklů ===== */
+/* ===== Noční obloha ===== */
 (function(){
-  const NS="http://www.w3.org/2000/svg";
-  [["ringBody",140,23,"#d0848c"],["ringHeart",118,28,"#79ada2"],["ringMind",96,33,"#c9a46a"]].forEach(([id,r,n,col])=>{
-    const g=document.getElementById(id); if(!g) return;
-    const c=document.createElementNS(NS,"circle");
-    c.setAttribute("cx",150);c.setAttribute("cy",150);c.setAttribute("r",r);c.setAttribute("fill","none");
-    c.setAttribute("stroke",col);c.setAttribute("stroke-opacity",".45");c.setAttribute("stroke-width",".7");g.appendChild(c);
-    for(let i=0;i<n;i++){
-      const ang=i/n*2*Math.PI, big=i===0;
-      const l=document.createElementNS(NS,"line");
-      const r1=r-(big?9:4), r2=r+(big?9:4);
-      l.setAttribute("x1",150+r1*Math.cos(ang));l.setAttribute("y1",150+r1*Math.sin(ang));
-      l.setAttribute("x2",150+r2*Math.cos(ang));l.setAttribute("y2",150+r2*Math.sin(ang));
-      l.setAttribute("stroke",col);l.setAttribute("stroke-width",big?"1.6":".8");l.setAttribute("stroke-opacity",big?"1":".7");
-      g.appendChild(l);
-    }
-    const dot=document.createElementNS(NS,"circle");
-    dot.setAttribute("cx",150+r);dot.setAttribute("cy",150);dot.setAttribute("r","3");dot.setAttribute("fill",col);g.appendChild(dot);
-  });
-})();
-
-/* ===== Ukázka na úvodu ===== */
-$("sampleChart").innerHTML = chart(new Date(1988,2,14), midnight(new Date()));
-
-/* ===== Hvězdná obloha ===== */
-(function(){
-  const c=$("sky"), g=c.getContext("2d"); let stars=[], W, H;
-  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const c = $("sky"); if(!c || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  const g = c.getContext("2d"); let W,H,stars=[],links=[],t=0;
   function size(){ W=c.width=innerWidth*devicePixelRatio; H=c.height=innerHeight*devicePixelRatio;
-    stars=Array.from({length:Math.round(innerWidth*innerHeight/4200)},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.1+.2)*devicePixelRatio,p:Math.random()*6.28,s:.004+Math.random()*.012})); }
-  let shoot=null, links=[];
+    stars = Array.from({length: Math.min(110, Math.round(innerWidth*innerHeight/14000))}, ()=>({
+      x:Math.random()*W, y:Math.random()*H, r:(Math.random()*1.3+.3)*devicePixelRatio, p:Math.random()*6.28, s:Math.random()*.6+.2
+    }));
+    mkLinks();
+  }
   function mkLinks(){ links=[]; for(let i=0;i<stars.length;i++){ for(let j=i+1;j<stars.length;j++){ const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y; if(dx*dx+dy*dy < (90*devicePixelRatio)**2 && Math.random()<.35) links.push([i,j]); } } links=links.slice(0,40); }
   function draw(){ g.clearRect(0,0,W,H);
-    g.lineWidth=.6*devicePixelRatio;
-    for(const [i,j] of links){ const a=.05+.07*(0.5+0.5*Math.sin(stars[i].p*.5)); g.strokeStyle=`rgba(201,164,106,${a})`; g.beginPath(); g.moveTo(stars[i].x,stars[i].y); g.lineTo(stars[j].x,stars[j].y); g.stroke(); }
-    for(const s of stars){ s.p+=s.s; const a=.25+.55*(0.5+0.5*Math.sin(s.p));
-      g.fillStyle=`rgba(236,226,204,${a})`; g.beginPath(); g.arc(s.x,s.y,s.r,0,6.283); g.fill(); }
-    if(!still){
-      if(!shoot && Math.random()<.004) shoot={x:Math.random()*W*.7, y:Math.random()*H*.35, t:0};
-      if(shoot){ shoot.t+=1; const len=120*devicePixelRatio, px=shoot.x+shoot.t*9*devicePixelRatio, py=shoot.y+shoot.t*4*devicePixelRatio;
-        const gr=g.createLinearGradient(px,py,px-len,py-len*.45); gr.addColorStop(0,"rgba(245,230,196,.9)"); gr.addColorStop(1,"rgba(245,230,196,0)");
-        g.strokeStyle=gr; g.lineWidth=1.4*devicePixelRatio; g.beginPath(); g.moveTo(px,py); g.lineTo(px-len,py-len*.45); g.stroke();
-        if(shoot.t>45) shoot=null; }
-      requestAnimationFrame(draw); } }
-  addEventListener("resize",()=>{size(); mkLinks(); if(still) draw();}); size(); mkLinks(); draw();
+    g.strokeStyle="rgba(217,179,92,.10)"; g.lineWidth=devicePixelRatio*.6;
+    links.forEach(([i,j])=>{ g.beginPath(); g.moveTo(stars[i].x,stars[i].y); g.lineTo(stars[j].x,stars[j].y); g.stroke(); });
+    stars.forEach(s=>{ const a=.35+.45*Math.sin(t*s.s+s.p);
+      g.beginPath(); g.fillStyle=`rgba(242,230,210,${a.toFixed(3)})`; g.arc(s.x,s.y,s.r,0,6.2832); g.fill(); });
+    t+=.012; requestAnimationFrame(draw);
+  }
+  addEventListener("resize", size); size(); draw();
 })();
-</script>
 
+</script>
 </body>
 </html>
